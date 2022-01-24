@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+	<script src="https://threejs.org/build/three.min.js"></script>
+	<script src="https://threejs.org/examples/js/libs/tween.min.js"></script>
+	<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+	<script src="color.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body onload="main()">
+
+</body>
+	<script>
+		function main(){
+			var wwidth = window.innerWidth;
+			var wheight = window.innerHeight;
+			var c = new THREE.WebGLRenderer();
+			c.setSize(wwidth,wheight);
+			document.body.appendChild(c.domElement);
+			c.domElement.style.position = "absolute";
+			c.domElement.style.top = "0";
+			c.domElement.style.left = "0";
+
+			/* SCENE */
+			var scene = new THREE.Scene;
+
+			/* Sky */
+			var skyTex = new THREE.TextureLoader().load("sky.jpg");
+			skyTex.wrapS = THREE.RepeatWrapping;
+			skyTex.wrapT = THREE.RepeatWrapping;
+			skyTex.repeat.set(8,8);
+			var skyGeo = new THREE.SphereBufferGeometry(80,32,32);
+			var skyMaterial = new THREE.MeshBasicMaterial({
+			color: 0xffffff,
+			map: skyTex,
+			side: THREE.DoubleSide
+			});
+			var mySky = new THREE.Mesh(skyGeo, skyMaterial);
+			skyGeo.computeFaceNormals();
+			skyGeo.scale(25,25,25);
+			scene.add(mySky);
+			
+			/* Geo texture */
+			var geoTex = new THREE.TextureLoader().load("earth.jpg");
+			
+			/* Sphere geo */
+			var sphereGeo = new THREE.SphereBufferGeometry(80,32,32);
+			var sphereMaterial = new THREE.MeshLambertMaterial({
+			color: 0xffffff,
+			reflectivity: 0.75,
+			map: geoTex
+			});
+			var mySphere = new THREE.Mesh(sphereGeo, sphereMaterial);
+			scene.add(mySphere);
+
+			/* Moon */
+			var moonGeo = new THREE.SphereBufferGeometry(15,32,32);
+			var moonTex = new THREE.TextureLoader().load("moon.png");
+			var moonMaterial = new THREE.MeshLambertMaterial({
+			color: 0xffffff,
+			reflectivity: 0.15,
+			map: moonTex
+			});
+			var myMoon = new THREE.Mesh(moonGeo, moonMaterial);
+			var myMoon2 = new THREE.Mesh(moonGeo, moonMaterial);
+			myMoon.position.set(120,0,0);
+			myMoon2.position.set(120,0,0);
+			scene.add(myMoon);
+			scene.add(myMoon2);
+			
+			/* Camera */
+			var cam = new THREE.PerspectiveCamera(45,(wwidth/wheight),0.1,10000);
+			cam.position.y = 160;
+			cam.position.z = 400;
+			cam.lookAt(mySphere.position);
+
+			scene.add(cam);
+
+			/* Two Lights */
+			var light1 = new THREE.PointLight(0xff0044);
+			light1.position.set(120,260,100);
+
+			var light2 = new THREE.PointLight(0xffffff);
+			light2.position.set(-100,100,200);
+
+			scene.add(light1);
+			scene.add(light2);
+
+			/* Render */
+			c.render(scene,cam);
+
+			/* Render function */
+			var x=0;
+			var i = 0;
+			function render_scene(){
+			
+				//myMoon2.position.set(Math.sin(i/10)*120,(Math.cos(i/10)*120)/2,0);
+			
+				// Moon orbit (Rotates around earth)
+				myMoon.position.set((Math.sin(2*Math.PI*i*0.025)*220),Math.sin(Math.PI*i*0.025)*75,(Math.cos(2*Math.PI*i*0.025)*120));
+				// Moon rotation (Rotates around Y axis)
+				myMoon.rotation.y += Math.PI / 180;
+				// Earth rotation
+				//mySphere.rotation.y += Math.PI / 180;
+				mySphere.rotation.y = 2*Math.PI*i*0.015;
+				// Earth Precession
+				mySphere.rotation.x = Math.sin(2*Math.PI*i*0.05)*0.2;
+				// Sky rotation
+				mySky.rotation.y += Math.PI * 0.25 / 180;
+				// Light color cycle
+				var color = glitter(i+=.25,"0x");
+				var color2 = glitter(i+50,"0x");
+				light1.color = new THREE.Color(parseInt(color2));
+				// Render
+				c.render(scene,cam);
+				requestAnimationFrame(render_scene);
+			}
+
+			window.addEventListener('resize', function (){
+				cam.aspect = window.innerWidth / window.innerHeight;
+				cam.updateProjectionMatrix();
+				c.setSize(window.innerWidth, window.innerHeight);
+			}, false);
+
+			render_scene();
+		}
+	</script>
+</html>

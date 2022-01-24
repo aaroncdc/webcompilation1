@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+	<script src="http://threejs.org/build/three.min.js"></script>
+	<script src="http://threejs.org/examples/js/libs/tween.min.js"></script>
+	<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+	<script src="color.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body onload="main()">
+
+</body>
+	<script>
+		function main(){
+			var wwidth = window.innerWidth;
+			var wheight = window.innerHeight;
+			var c = new THREE.WebGLRenderer();
+			c.setSize(wwidth,wheight);
+			document.body.appendChild(c.domElement);
+			c.domElement.style.position = "absolute";
+			c.domElement.style.top = "0";
+			c.domElement.style.left = "0";
+
+			/* SCENE */
+			var scene = new THREE.Scene;
+
+			/* Cube */
+			var cubeMesh = new THREE.CubeGeometry(40,40,40);
+			var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x9999FF});
+			var cube = new THREE.Mesh(cubeMesh, cubeMaterial);
+
+			scene.add(cube);
+
+			/* Custom Mesh */
+			var geometry = new THREE.Geometry();
+
+			geometry.vertices.push(
+					/*T1*/
+					new THREE.Vector3(0,0,0),
+					new THREE.Vector3(0,200,0),
+					new THREE.Vector3(200,200,0),
+					/*T2*/
+					new THREE.Vector3(200,200,0),
+					new THREE.Vector3(200,0,0),
+					new THREE.Vector3(0,0,0)
+				);
+
+			geometry.faces.push(
+				new THREE.Face3(0,1,2),
+				new THREE.Face3(3,4,5)
+				);
+			geometry.computeFaceNormals();
+
+			var item = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+
+			item.position.z = -100;
+			item.position.y = -100;
+			item.position.x = -100;
+			item.material.side = THREE.DoubleSide;
+
+			scene.add(item);
+
+			/* Cube Wireframe */
+			var cubeframe = new THREE.WireframeGeometry(cubeMesh);
+			var linemat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 1 } );
+			var line = new THREE.LineSegments(cubeframe,linemat);
+
+			scene.add(line);
+
+			/* Mesh wireframe */
+			var meshWire = new THREE.WireframeGeometry(geometry);
+			var line2 = new THREE.LineSegments(meshWire, linemat);
+
+			line2.position.z = -100;
+			line2.position.y = -100;
+			line2.position.x = -100;
+
+			scene.add(line2);
+
+
+			/* Camera */
+			var cam = new THREE.PerspectiveCamera(45,(wwidth/wheight),0.1,10000);
+			cam.position.y = 160;
+			cam.position.z = 400;
+			cam.lookAt(cube.position);
+
+			scene.add(cam);
+
+			/* Two Lights */
+			var light1 = new THREE.PointLight(0xff0044);
+			light1.position.set(120,260,100);
+
+			var light2 = new THREE.PointLight(0x4499ff);
+			light2.position.set(-100,100,200);
+
+			scene.add(light1);
+			scene.add(light2);
+
+			/* Render */
+			c.render(scene,cam);
+
+			/* Render function */
+			var x=0;
+			var i = 0;
+			function render_scene(){
+
+				cube.rotation.y += Math.PI * 0.5 / 180;
+				cube.rotation.z += Math.PI * Math.cos(x++/50) / 180;
+				line.rotation.y += Math.PI * 0.5 / 180;
+				line.rotation.z += Math.PI * Math.cos(x++/50) / 180;
+				var color = glitter(i+=1,"0x");
+				var color2 = glitter(i+100,"0x");
+				cube.material.color.setHex(color);
+				line.material.color.setHex(color2);
+				c.render(scene,cam);
+				requestAnimationFrame(render_scene);
+			}
+
+			window.addEventListener('resize', function (){
+				cam.aspect = window.innerWidth / window.innerHeight;
+				cam.updateProjectionMatrix();
+				c.setSize(window.innerWidth, window.innerHeight);
+			}, false);
+
+			render_scene();
+		}
+	</script>
+</html>

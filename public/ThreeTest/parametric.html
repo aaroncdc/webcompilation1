@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+	<script src="https://threejs.org/build/three.min.js"></script>
+	<script src="https://threejs.org/examples/js/libs/tween.min.js"></script>
+	<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+	<script src="color.js" type="text/javascript"></script>
+</head>
+<body>
+	<script>
+		var wwidth = window.innerWidth;
+		var wheight = window.innerHeight;
+		var c = new THREE.WebGLRenderer();
+		c.setSize(wwidth,wheight);
+		document.body.appendChild(c.domElement);
+		c.domElement.style.position = "absolute";
+		c.domElement.style.top = "0";
+		c.domElement.style.left = "0";
+
+		var scale = 75;
+
+		//u latitude, v longitude on sphere
+		var paramFunction2 = function (u, v, target) {
+            var u = 2*Math.PI*u;
+            var v = 2*Math.PI*v;
+            var x = Math.sin(u);
+            var y = Math.cos(v);
+            var z = Math.cos(u);
+            target.set(x*scale, y*scale, z*scale);
+            //return target;
+        }
+
+		var scene = new THREE.Scene;
+
+		var geometry = new THREE.ParametricBufferGeometry( paramFunction2, 16, 16 );
+		var material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+		var cube = new THREE.Mesh( geometry, material );
+		cube.material.side = THREE.DoubleSide;
+		cube.position.z = 1;
+
+		scene.add( cube );
+
+		var cubeframe = new THREE.WireframeGeometry(geometry);
+		var linemat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+		var line = new THREE.LineSegments(cubeframe,linemat);
+
+		line.position.z = 1;
+
+		scene.add(line);
+
+		var cam = new THREE.PerspectiveCamera(45,(wwidth/wheight),0.1,10000);
+		cam.position.y = 160;
+		cam.position.z = 400;
+		cam.lookAt(cube.position);
+
+		scene.add(cam);
+
+		var light1 = new THREE.PointLight(0xff0044);
+		light1.position.set(120,260,100);
+
+		var light2 = new THREE.PointLight(0x4499ff);
+		light2.position.set(-100,100,200);
+
+		scene.add(light1);
+		scene.add(light2);
+
+		c.render(scene,cam);
+
+		var x=0;
+		var i = 0;
+		function render_scene(){
+			c.domElement.style.width = "100%"
+			c.domElement.style.height = "100%";
+
+			line.rotation.y = cube.rotation.y += Math.PI * 0.5 / 180;
+			line.rotation.z = cube.rotation.z += Math.PI * Math.cos(x++/50) / 180;
+			c.render(scene,cam);
+			requestAnimationFrame(render_scene);
+
+			var color = glitter(i+=1,"0x");
+			var color2 = glitter(i+100,"0x");
+			//cube.material.color.setHex(color);
+			line.material.color.setHex(color2);
+		}
+
+		window.addEventListener('resize', function (){
+			cam.aspect = window.innerWidth / window.innerHeight;
+			cam.updateProjectionMatrix();
+			c.setSize(window.innerWidth, window.innerHeight);
+		}, false);
+
+		render_scene();
+	</script>
+</body>
+</html>

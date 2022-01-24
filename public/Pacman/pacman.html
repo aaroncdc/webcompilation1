@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="margin: 0; position: absolute; top: 0; left: 0; z-index: 100;">NO CANVAS</canvas>
+
+	<img src="sprites.png" id="sprites" style="display:none;" />
+	<script>
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext('2d');
+		var spr_w = 37;
+		var spr_h = 37;
+		var grid_w = 37;
+		var grid_h = 37;
+		var map_wc = 25;
+		var map_hc = 25;
+		var map_w = grid_w * map_wc;
+		var map_h = grid_h * map_hc;
+		var screenscale = .75;
+		var spritesheet = document.getElementById("sprites");
+		var image_ready = false;
+		var inc = 0;
+
+		var player = {
+			x: 54,
+			y: 54,
+			gCoords: {x: 0, y: 0},
+			direction: -1,
+			flipx: false,
+			rot: 0,
+			af: 0,
+			fs: 2
+		};
+
+		function tellPlayerPos(){
+			console.log("Player X: " + player.x + "\n");
+			console.log("Player Y: " + player.y + "\n");
+			var gcoords = absoluteToGrid(player.x,player.y);
+			console.log("Tile X: " + gcoords.x + "\n");
+			console.log("Tile Y: " + gcoords.y + "\n");
+			console.log("Player Tile: " + coordstolinear(player.x,player.y) + "\n");
+		}
+
+		function absoluteToGrid(x,y)
+		{
+			return {
+				x: Math.floor((x-16)/grid_w),
+				y: Math.floor((y-16)/grid_h)
+			};
+		}
+
+		function coordstolinear(x,y)
+		{
+			var cx = Math.floor(x/grid_w);
+			var cy =Math.floor(y/grid_h);
+			return (map_hc*cy)+cx;
+		}
+
+		function gridToLinear(x,y)
+		{
+			return y*map_wc+x;
+		}
+
+		//x10 y7 - x14 y9
+
+		function printGhost(g)
+		{
+			ghosts[g].pGhost();
+		}
+
+		var ghost = function(color,x,y){
+			this.color = color;
+			this.x = x;
+			this.y = y;
+			this.gridCoords;
+			this.direction = -1;
+			this.movement = 0; //0 H 1 V
+			this.lastTileX;
+			this.lastTileY;
+			this.targetX = 12;
+			this.targetY = 10;
+			this.canVertical = function(){
+				var cup = (checkFree(1,this.x,this.y-8))?1:0;
+				var cdown = (checkFree(3,this.x,this.y+8))?2:0;
+				return cup + cdown;
+			}
+			this.canHorizontal = function(){
+				var cleft = (checkFree(0,this.x-8,this.y))?1:0;
+				var cright = (checkFree(2,this.x+8,this.y))?2:0;
+				return cleft + cright;
+			}
+			this.pGhost = function(){
+				console.log("This X: " + this.gridCoords.x);
+				console.log("This Y: " + this.gridCoords.y);
+				console.log("Target X: " + this.targetX);
+				console.log("Target Y: " + this.targetY);
+				console.log("lastTile X: " + this.lastTileX);
+				console.log("lastTile Y: " + this.lastTileY);
+				console.log("Direction: "+this.direction+"\n");
+				console.log("CanH: " + this.canHorizontal());
+				console.log("CanV: " + this.canVertical());
+			}
+			this.logic = function(){
+				this.gridCoords = absoluteToGrid(this.x, this.y);
+				var inCauldron = (this.gridCoords.x >= 10 && this.gridCoords.x <= 14) && (this.gridCoords.y >= 7 && this.gridCoords.y <= 9);
+				if(inCauldron)
+				{
+					this.targetX = 12;
+					this.targetY = 10;
+				}else{
+					this.targetX = player.gCoords.x;
+					this.targetY = player.gCoords.y;
+				}
+
+				switch(this.movement)
+				{
+					case 0:
+					if((this.gridCoords.x == this.lastTileX) && (this.gridCoords.y == this.lastTileY))
+						break;
+						if(this.gridCoords.x < this.targetX)
+							this.direction = 2;
+						else if(this.gridCoords.x > this.targetX)
+							this.direction = 0;
+					break;
+					case 1:
+					if((this.gridCoords.x == this.lastTileX) && (this.gridCoords.y == this.lastTileY))
+						break;
+						if(this.gridCoords.y < this.targetY)
+							this.direction = 3;
+						else if(this.gridCoords.y > this.targetY)
+							this.direction = 1;
+					break;
+				}
+
+				
+
+				var mov = (checkFree(this.direction,this.x,this.y))?1:0;
+
+				switch(this.direction){
+				case 0:
+					this.x -= 1 * mov;
+				break;
+				case 1:
+					this.y -= 1 * mov;
+				break;
+				case 2:
+					this.x += 1 * mov;
+				break;
+				case 3:
+					this.y += 1 * mov;
+				break;
+				default:
+					this.x = this.x;
+				}
+				
+				//var tileChange = ?true:false;
+				var hor = this.canHorizontal();
+				var ver = this.canVertical();
+				//if(this.gridCoords.x == 12 && (this.gridCoords.y <= 13 && this.gridCoords.y >= 9))
+				if((this.gridCoords.x != this.lastTileX) || (this.gridCoords.y != this.lastTileY))
+					switch(this.movement)
+					{
+						case 0:
+							if(ver > 0)
+							{
+								switch(ver)
+								{
+									case 1:
+										if(this.gridCoords.y > this.targetY)
+											this.direction = 1;
+									break;
+									case 2:
+										if(this.gridCoords.y < this.targetY)
+											this.direction = 3;
+									break;
+									case 3:
+										if(this.gridCoords.y > this.targetY)
+											this.direction = 1;
+										if(this.gridCoords.y < this.targetY)
+											this.direction = 3;
+									break;
+								}
+							}
+						break;
+						case 1:
+							if(hor > 0)
+							{
+								switch(hor)
+								{
+									case 1:
+										if(this.gridCoords.x > this.targetX)
+											this.direction = 0;
+									break;
+									case 2:
+										if(this.gridCoords.x < this.targetX)
+											this.direction = 2;
+									break;
+									case 3:
+										if(this.gridCoords.x > this.targetX)
+											this.direction = 0;
+										if(this.gridCoords.x < this.targetX)
+											this.direction = 2;
+									break;
+								}
+							}
+						break;
+					}
+
+				this.lastTileX = this.gridCoords.x;
+				this.lastTileY = this.gridCoords.y;
+			}
+		}
+		var ghosts = [];
+
+		var map = {
+			grid: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+				   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+				   1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,1,1,1,0,1,
+				   1,0,1,1,1,1,1,0,0,1,0,0,0,1,0,0,1,1,0,1,1,1,1,0,1,
+				   1,0,0,1,1,1,1,0,1,0,1,0,1,0,1,0,0,1,0,1,1,1,0,0,1,
+				   1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+				   1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,
+				   0,0,0,0,0,1,0,1,0,1,2,2,2,2,2,1,0,1,0,1,0,0,0,0,0,
+				   1,1,1,1,0,1,0,1,0,1,2,2,2,2,2,1,0,1,0,1,0,1,1,1,1,
+				   1,0,0,0,0,0,0,0,0,1,1,1,2,1,1,1,0,0,0,0,0,0,0,0,1,
+				   1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,
+				   1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
+				   1,0,1,1,1,1,1,0,0,1,0,0,0,1,0,0,0,1,0,1,1,1,1,0,1,
+				   1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,
+				   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+		}
+
+		spritesheet.onload = function() {
+			image_ready = true;
+			ghosts.push(new ghost(0,400,295));
+			//ghosts.push(new ghost(1,460,295));
+			//ghosts.push(new ghost(2,520,295));
+		}
+
+		function checkFree(dir,x,y)
+		{
+			var l = 0;
+			switch(dir){
+				case 0:
+					l = map.grid[coordstolinear(x-grid_w/2,y)];
+				break;
+				case 1:
+					l = map.grid[coordstolinear(x,y-grid_w/2)];
+				break;
+				case 2:
+					l = map.grid[coordstolinear(x+grid_w/2,y)];
+				break;
+				case 3:
+					l = map.grid[coordstolinear(x,y+grid_w/2)];
+				break;
+			}
+			if(l == 1)
+				return false;
+			else
+				return true;
+		}
+
+		function grid(){
+			for(var x = 0; x < ctx.canvas.width; x+=grid_w)
+			{
+				ctx.strokeStyle = "white";
+				ctx.beginPath();
+				ctx.moveTo(x,0);
+				ctx.lineTo(x,ctx.canvas.height);
+				ctx.stroke();
+			}
+			for(var y = 0; y < ctx.canvas.height; y+=grid_h)
+			{
+					ctx.strokeStyle = "white";
+					ctx.beginPath();
+					ctx.moveTo(0,y);
+					ctx.lineTo(ctx.canvas.width,y);
+					ctx.stroke();
+			}
+		}
+
+		function drawMap(){
+			var col = 0;
+			for(var i = 0; i < map.grid.length; i++){
+				if(i%25==0 && i != 0)
+					col++;
+				switch(map.grid[i])
+				{
+					case 0:
+						ctx.save();
+						ctx.translate(grid_w*(i%25)+(grid_w/4), grid_h*col+(grid_h/4));
+						ctx.scale(.5,.5);
+						ctx.drawImage(spritesheet,74,0,grid_w,grid_h,0,0,grid_w,grid_h);
+						ctx.restore();
+					break;
+					case 1:
+						ctx.save();
+						ctx.translate(grid_w*(i%25), grid_h*col);
+						ctx.drawImage(spritesheet,300,0,grid_w,grid_h,0,0,grid_w,grid_h);
+						ctx.restore();
+					break;
+				}
+			}
+		}
+
+		function draw(){
+			//Canvas del tamaño de la ventana
+			ctx.canvas.width = window.innerWidth;
+			ctx.canvas.height = window.innerHeight;
+
+			//Dibujar cosas
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+			//grid();
+			drawMap()
+			if(image_ready)
+			{
+				ctx.save(); //<- Guarda el canvas
+				ctx.translate(player.x, player.y);
+				ctx.rotate(player.rot*Math.PI/180);
+				ctx.scale((player.flipx)?-screenscale:screenscale, screenscale);
+				ctx.drawImage(spritesheet,player.af*spr_w,0,spr_w,spr_h,-(spr_w/2),-(spr_h/2),spr_w,spr_h);
+				ctx.restore();
+			}
+
+			for(var i in ghosts)
+			{
+				ctx.save();
+				ctx.drawImage(spritesheet,374+(38*ghosts[i].color),0,spr_w,spr_h,ghosts[i].x-(spr_w/2),ghosts[i].y-(spr_h/2),spr_w,spr_h);
+				ctx.drawImage(spritesheet,374,74,spr_w,spr_h,ghosts[i].x-(spr_w/2),ghosts[i].y-(spr_h/2),spr_w,spr_h);
+				ctx.restore();
+			}
+			player.af = (inc%2==0)?0:1;
+		}
+
+		function logic(){
+			var mov = (checkFree(player.direction,player.x,player.y))?1:0;
+			player.gCoords = absoluteToGrid(player.x, player.y);
+			switch(player.direction){
+				case 0:
+					player.x -= 1 * mov;
+				break;
+				case 1:
+					player.y -= 1 * mov;
+				break;
+				case 2:
+					player.x += 1 * mov;
+				break;
+				case 3:
+					player.y += 1 * mov;
+				break;
+				default:
+					player.x = player.x;
+			}
+			if(map.grid[coordstolinear(player.x,player.y)]==0)
+			{
+				map.grid[coordstolinear(player.x,player.y)]=99;
+			}
+			for(var i in ghosts)
+				ghosts[i].logic();
+		}
+
+		window.addEventListener("keydown", function(e){
+			switch(e.keyCode)
+			{
+				case 37:
+					player.direction = 0; //left
+					player.flipx = true;
+					player.rot = 0;
+				break;
+				case 38:
+					player.direction = 1; //up
+					player.flipx = false;
+					player.rot = -90;
+				break;
+				case 39:
+					player.direction = 2; //right
+					player.flipx = false;
+					player.rot = 0;
+				break;
+				case 40:
+					player.direction = 3; //down
+					player.flipx = false;
+					player.rot = 90;
+				break;
+			}
+		},false);
+
+		window.setInterval(draw, 1);
+		window.setInterval(logic, 1);
+		window.setInterval(function(){
+			inc++;
+		},100);
+	</script>
+</body>
+</html>

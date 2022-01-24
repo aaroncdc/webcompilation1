@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="static/style.css">
+<link rel="stylesheet" type="text/css" href="static/media.css">
+<link rel="stylesheet" type="text/css" href="static/colors/dark.css">
+<link rel="stylesheet" type="text/css" href="static/editor.css">
+<title>Blog</title>
+</head>
+<body>
+<div id="main-container">
+
+<header>
+<h1>Blog Title</h1>
+</header>
+<nav>
+
+<div class="flbcontainer">
+<ul>
+<a href="#"><li>Home</li></a>
+<a href="#"><li>Posts</li></a>
+<a href="#"><li>Search</li></a>
+<a href="#"><li>About</li></a>
+<a href="#"><li>Forum</li></a>
+</ul>
+</div>
+
+</nav>
+
+<div class="second-container">
+
+<content>
+<form name="entry" method="POST" action="" class="editor-form">
+
+<h1>Entry editor</h1>
+
+<label for="title">Article title:</label><br/>
+<input type="text" name="title" placeholder="Article title"><br/>
+<label for="article-header">Article header:</label><br/>
+<textarea name="article-header" class="texta" placeholder="Write a header for your article here"></textarea><br/>
+
+<label>Article editor: </label>
+<hr/>
+<div class="buttons">
+<ul>
+<li class="button"><strong>B</strong></li>
+<li class="button"><em>I</em></li>
+<li class="button"><u>U</u></li>
+<li class="button"><s>S</s></li>
+</ul>
+</div>
+<hr/>
+<textarea id="entry-editor"></textarea>
+<input type="reset" value="NUKE"><input type="submit" value="POST">
+</form>
+</content>
+
+</div>
+
+<footer>Footer</footer>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Make your own games whit Java!!</title>
+<style type="text/css">
+<!--
+body,td,th {
+	color: #00FF00;
+}
+body {
+	background-color: #000000;
+}
+.Estilo1 {color: #FF0000}
+-->
+</style></head>
+
+<body>
+<table width="750" border="0" cellpadding="0" cellspacing="0">
+  <!--DWLayoutTable-->
+  <tr>
+    <td width="750" height="112" valign="top"><h1>HOW TO CREATE YOUR OWN JAVA GAMES!</h1>
+      <p>Yes! As you read! Soon, you'll be able to create your own games whit Java... EVEN 3D GAMES! This is cool ppl. Be patient, Im working on! </p>
+    <p>INFORMATION EXTRACTED FROM JAVA COOPERATION, AT <a href="http://java.about.com/gi/dynamic/offsite.htm?zi=1/XJ&sdn=java&zu=http%3A%2F%2Fjavacooperation.gmxhome.de%2FTutorialStartEng.html">java.about.com</a></p>
+    <p>View the original webpage in <a href="http://java.about.com/gi/dynamic/offsite.htm?zi=1/XJ&sdn=java&zu=http%3A%2F%2Fjavacooperation.gmxhome.de%2FTutorialStartEng.html">english</a></p>
+    <p>Siehe die urspr&uuml;ngliche web-seite auf <a href="http://javacooperation.gmxhome.de/indexDeu.html">deutsch</a></p></td>
+  </tr>
+  <tr>
+    <td height="3048" valign="top"><h1 class="Estilo1">LET'S START!</h1>
+       First, you'll need a Java compiler. Get one free now <a href="http://www.freewebs.com/james_magnus/freejava.zip">here</a>. Its called FreeJava.
+      <p>To start, let's see the basic estructure of a Java applet. Here is an example:</p>
+      <p> // import necessary packages <br />
+import java.applet.*; <br />
+import java.awt.*; <br />
+<br />
+// Inherit the applet class from the class Applet <br />
+public class FirstApplet extends Applet <br />
+{ </p>
+    <ul>
+      // Now you should implement the following methods <br />
+  <br />
+      // init - method is called the first time you enter the HTML site with the applet <br />
+      public void init() {... } <br />
+  <br />
+      // start - method is called every time you enter the HTML - site with the applet <br />
+      public void start() {... } <br />
+  <br />
+      // stop - method is called if you leave the site with the applet <br />
+      public void stop() {... } <br />
+  <br />
+      // destroy method is called if you leave the page finally (e. g. closing browser) <br />
+      public void destroy() {... } <br />
+  <br />
+      /** paint - method allows you to paint into your applet. This method is  called e.g. if you move your browser window or if you call repaint() */ <br />
+      public void paint (Graphics g) { }
+    </ul>
+    <p>} </p>
+    <p><br />
+      When you compile it, you must insert this code into your webpage:</p>
+    <p> &lt;html&gt; <br />
+&lt;body&gt; <br />
+&lt;p&gt;&lt;applet code =&quot;FirstApplet.class&quot; width=700 height=400&gt; <br />
+&lt;/applet&gt;&lt;/p&gt; <br />
+&lt;/body&gt; <br />
+&lt;/html&gt; </p>
+    <p> This is the most important line: &lt;p&gt;&lt;applet code =&quot;FirstApplet.class&quot; width=700 height=400&gt; . </p>
+    <ol>
+      <li>applet code =&quot;FirstApplet.class&quot; tells the browser where to find the &quot;extends Applet&quot; - class. </li>
+      <li>width and height tell the browser how big the applet should be </li>
+      </ol>
+    Whit this, we'll learn how to make animations. This is the next step:
+    <h2 class="Estilo1">How to move a ball </h2>
+    <p align="justify">We want to start  with a very essential step. We will program an applet in which a ball  is moving from the left to the right hand side. I know this is nothing  BIG but if you want to learn how to program games it is maybe the most  important thing to understand how to animate objects! <br />
+        <br />
+      At the beginning we have to write our basic structure of an applet  again but we will add two little things. Our applet has to implement  the interface Runnable and the corrosponding method run() to animate a  object. The structure of the applet should look like this: </p>
+    import java.applet.*; <br />
+import java.awt.*; <br />
+<br />
+public class BallApplet extends Applet <em>implements Runnable </em><br />
+{
+<ul>
+  public void init() { } <br />
+  <br />
+  public void start() { } <br />
+  <br />
+  public void stop() { } <br />
+  <br />
+  public void destroy() { } <br />
+  <br />
+  <em>public void run () { } </em><br />
+  <br />
+  public void paint (Graphics g) { } <br />
+  <br />
+</ul>
+}
+<p align="justify">To move a object we need an other object that has to  be a instance of the class Thread, we declare this object in the start  - method of our applet: </p>
+<h3 align="justify">Threads</h3>
+<p align="justify">A thread is a piece of program that is able to run  paralell to other parts of the program (multithreading). Threads are  implemented by the class Thread, the interface Runnable and the method  run(), we have already implemented these two things in the step before.  Important methods of the class Thread are: </p>
+<ul>
+  <li>Thread.start(): starts a thread </li>
+  <li>Thread.stop(): stops a thread </li>
+  <li>Thread.sleep(time in milliseconds): stops thread for a certain amount of time </li>
+</ul>
+<p>You can find more functions of the thread class in the Java API! <br />
+    <br />
+  And here comes the code! </p>
+public void start () <br />
+{
+<ul>
+  // define a new thread <br />
+  Thread th = new Thread (this); <br />
+  // start this thread <br />
+  th.start (); <br />
+</ul>
+}
+<p align="justify">Now this thread is running in the run() - method of  our applet. Every time all methods... in the run - method have been  called, we stop the thread for a short time. Your run method should  look like this: </p>
+public void run () <br />
+{
+<ul>
+  // lower ThreadPriority <br />
+  Thread.currentThread().setPriority(Thread.MIN_PRIORITY); <br />
+  <br />
+  // run a long while (true) this means in our case &quot;always&quot; <br />
+  while (true) <br />
+  {
+  <ul>
+    // repaint the applet <br />
+    repaint(); <br />
+    <br />
+    try <br />
+    {
+    <ul>
+      // Stop thread for 20 milliseconds <br />
+      Thread.sleep (20); <br />
+    </ul>
+    } <br />
+    catch (InterruptedException ex) <br />
+    {
+    <ul>
+      // do nothing <br />
+    </ul>
+    } <br />
+    <br />
+    // set ThreadPriority to maximum value <br />
+    Thread.currentThread().setPriority(Thread.MAX_PRIORITY); <br />
+  </ul>
+  }
+</ul>
+}
+<p align="justify">What we have now is a neverending loop that executes  all things within the loop, waits 20 milliseconds and executes  everything once again and so on. But how can we move a circle that is  painted by the applet? <br />
+  Well this is a very simple idea: Our  circle has a x - and a y - position. If we would add 1 to the x -  position everytime the thread executed, the ball should be moving  across the applet, because it is painted at a different x - position  everytime we execute the thread! <br />
+  <br />
+  Ok, let's start with drawing a circle: Add these lines to the paint - method of the applet: </p>
+public void paint (Graphics g) <br />
+{
+<ul>
+  // set color <br />
+  g.setColor (Color.red); <br />
+  <br />
+  // paint a filled colored circle <br />
+  g.fillOval (x_pos - radius, y_pos - radius, 2 * radius, 2 * radius); <br />
+</ul>
+}
+<p align="justify">And we need the following instance variables at the head of the program: <br />
+    <br />
+  int x_pos = 10; <br />
+  int y_pos = 100; <br />
+  int radius = 20; <br />
+  <br />
+  To move a ball we change the value of the x_pos variable everytime the  thread is executed. Our run - method should look like this: </p>
+public void run () <br />
+{ <br />
+...
+<ul>
+  while (true) <br />
+  {
+  <ul>
+    <em>// changing the x - position of the ball/circle <br />
+      x_pos ++; </em><br />
+    ... <br />
+  </ul>
+  }
+</ul>
+}
+<p align="justify">If you add this applet to a HTML - document as seen  in the chapter before, a red ball should be moving across the applet  one times! </p>
+<p><a href="http://javacooperation.gmxhome.de/Applets/Ballbewegung1/BallBewegung1Applet.html">here</a> you can see the project finished. Its not an special thing, but this is the begin. </p>
+<h2 class="Estilo1">Double buffering </h2>
+<p align="justify">I'm shure you  recognized in the first applet that the cirlce is flickering. There is  a very simple reason for this. Everytime the paint - method is called  by repaint() the applet screen is cleared completly. Because of this we  can see for a millisecond a absolutly blank screen. To suppress this  phenomena, we have three possibilities: </p>
+<ol>
+  <li>We don't clear the screen at all </li>
+  <li>We clear the screen only where something is changing </li>
+  <li>We use double buffering </li>
+</ol>
+<h3>Don't clear the screen at all </h3>
+<p align="justify">This  idea seems to be the solution to all our problems (but it is not!). In  our case it would mean that the ball would paint a thick red line  across the applet because the screen stays red at every position the  ball has been once. This might be ok for some situations but we want to  see a moving ball, not a thick red line. So this technique is just  usefull for objects that are not moving. <br />
+  At first it is important  for you to know one thing. The call of repaint() doesn't call the  paint() - method at the same time. Instead a method called update() is  called. If one doesn't overwrite this method, update() clears the  complete screen and afterwards calls paint() which paints the  background and our circle again. To avoid clearing the screen you have  to overwrite the update() - method. Our new update() - method doesn't  clear the screen anymore, but just calls paint(). This can be done with  three line of code: </p>
+public void update(Graphics g) <br />
+{
+<ul>
+  paint(g);
+</ul>
+}
+<p align="justify">As I said before this is no solution for our applet.  But it is essential to understand that repaint() doesn't call paint()  but update() which calls paint() then!! </p>
+<h3>Clear the screen only where something is changing </h3>
+<p align="justify">This solution is based on the idea to repaint just  these parts of our applet where something has changed. This concept is  very good for a game like snakin'. If the last part of your snake is  colored in the same color as the background, this part overpaints the  parts of the snake, where the snake has been. I don't want to talk  about this solution in detail, because one could use this method just  in very special situations. So let's talk about the double buffering  which is a really good and effective solution to avoid a flickering  screen and the best of it all: You can use this method in every applet  the same way as I do now, so you'll never have to worry about that  problem again! </p>
+<h3>Double buffering </h3>
+<p align="justify">As I said you can use double buffering in every  applet in a very easy way. Double buffering means to paint all the  things in the paint() method to a offscreen image. If all things, that  have to be painted, are painted, this image is copied to the applet  screen. The method does the following in detail: </p>
+<ol>
+  <li>Generate a new offscreen-image by using createImage and store this image in a instance variable( = generate a empty image) </li>
+  <li>Call getGraphics to get graphic context for this image </li>
+  <li>Draw everything (including to clear the screen complete) on the offscreen image ( = draw image in the background) </li>
+  <li>When finished, copy this image over the existing image on the screen. ( = draw image in the foreground) </li>
+</ol>
+<p align="justify">This technique means that the picture is already  painted before it is copied to the screen. When copiing the image to  the foreground the old pixels are overlayed by the new ones. There  won't be any flickering picture anymore because there is not a  millisecond you could see a empty screen! </p>
+<p align="justify">The only disadvantage of the double buffering is,  that it produces a large amount of data and every image is drawn two  times (offscreen and when copiing to the screen). But in most cases and  on a fast computer this is much better than wasting time on finding an  other solution! </p>
+<p align="justify">Well after all this theorie I will show you how to  integrate the double buffering into our &quot;ball moving&quot; applet (use the  applet of the chapter before as basic code!): </p>
+<h3>Double buffering: the code </h3>
+// declare two instance variables at the head of the program <br />
+private Image dbImage; <br />
+private Graphics dbg; <br />
+<br />
+... other code ... <br />
+<br />
+/** Update - Method, implements double buffering */ <br />
+public void update (Graphics g) <br />
+{
+<ul>
+  // initialize buffer <br />
+  if (dbImage == null) <br />
+  {
+  <ul>
+    dbImage = createImage (this.getSize().width, this.getSize().height); <br />
+    dbg = dbImage.getGraphics (); <br />
+  </ul>
+  } <br />
+  <br />
+  // clear screen in background <br />
+  dbg.setColor (getBackground ()); <br />
+  dbg.fillRect (0, 0, this.getSize().width, this.getSize().height); <br />
+  <br />
+  // draw elements in background <br />
+  dbg.setColor (getForeground()); <br />
+  paint (dbg); <br />
+  <br />
+  // draw image on the screen <br />
+  g.drawImage (dbImage, 0, 0, this); <br />
+</ul>
+} <br />
+<p align="justify">As I said before you can copy and paste this code into every applet that uses animations! <a href="http://javacooperation.gmxhome.de/Applets/Doppelpufferung/BallBewegung2Applet.html">here</a> is the project finnished </p>
+<p align="justify">
+  NEXT 
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="50" height="37">
+    <param name="movie" value="next1.swf" />
+    <param name="quality" value="high" />
+    <param name="bgcolor" value="#000000" />
+    <embed src="http://www.freewebs.com/james_magnus/next1.swf" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="50" height="37" bgcolor="#000000"></embed>
+  </object>
+</p>
+<p>&nbsp;</p></td>
+  </tr>
+</table>
+</body>
+</html>

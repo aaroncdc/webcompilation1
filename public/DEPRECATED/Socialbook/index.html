@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width-device-width, initial-scale=1"/>
+<!-- Aqui van mas metaetiquetas para el posicionamiento -->
+<title>Socialbook</title>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+<!-- <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="js/loginproc.js"></script> -->
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+$(document).ready(function(){
+	$("#loginf2").fadeOut(0,0);
+	$("#switchl").click(function(){
+		$("#loginf").fadeOut(1000, function(){
+			$("#loginf2").fadeIn(1000, 0);
+		});
+	});
+	$("#switchr").click(function(){
+		$("#loginf2").fadeOut(1000, function(){
+			$("#loginf").fadeIn(1000, 0);
+		});
+	});
+});
+</script>
+
+
+</head>
+<body>
+
+    <header>
+    
+    <img src="static/logo512.png" width="64px" class="logoimg" align="left"/>
+    <h2 class="title">Socialbook</h2>
+    </header>
+    <article class="login">
+    <div class="loginform" id="loginf" align="center">
+        <h2>¡Inscribete Grátis!</h2>
+        <form name="formreg" action="registro.php" method="post">
+            <fieldset>
+            <input type="text" class="text" name="txtNombre" id="txtNombre" placeholder="Nombre"/>
+            </fieldset><fieldset>
+            <input type="text" class="text" name="txtApe1" id="txtApe1" placeholder="Apellido 1"/>
+            </fieldset>
+            <fieldset>
+            <input type="text" class="text" name="txtApe2" id="txtApe1" placeholder="Apellido 2"/>
+            </fieldset>
+            <fieldset>
+            <input type="text" class="text" name="txtMail" id="txtMail" placeholder="Correo"/>
+            </fieldset>
+            <fieldset>
+            <input type="password" class="text" name="txtPasswd" id="txtPasswd" placeholder="Contraseña"/>
+            </fieldset>
+            <fieldset>
+                <input type="submit" class="button" value="Registrar"/><input type="button" class="button" id="switchl" value="¡Tengo Cuenta!"/>
+            </fieldset>
+        </form>
+        <article class="corporate"><center>
+            Conecta con tu familia, amigos, y conocidos, ¡Y conoce a gente nueva!
+        </center></article>
+    </div>
+    
+    <div class="loginform2" id="loginf2" align="center">
+    <h2>Iniciar sesión:</h2>
+    <form name="formlog" action="login.php" method="post">
+    <fieldset>
+    <input type="text" class="text" name="txtMailLog" id="txtMail2" placeholder="Correo"/>
+    </fieldset><fieldset>
+    <input type="password" class="text" name="txtPasswdLog" id="txtPasswd2" placeholder="Contraseña"/></fieldset>
+    <center><input type="submit" class="button" value="Entrar"/><input type="button" class="button" id="switchr" value="¡No tengo cuenta!"/></center>
+    </form>
+        <article class="corporate2"><center>
+            ¿Qué dicen hoy tus amigos? ¿Tienes algo que compartir con ellos?
+        </center></article>
+    </div>
+        
+    </article>
+    <article class="info">
+    	<article class="more" align="center">
+		<h2>De todos, y para todos</h2>
+        <p>Socialbook es una red social que permite a sus usuarios conectar y compartir con amigos, familiares, y conocidos.</p>
+        <img src="static/link.png" width="256px" />
+		<p>El uso de Socialbook es totalmente libre y gratuito. Si dispones de una cuenta de correo electrónico, puedes usarla para unirte a la red.</p>
+		</article>
+    </article>
+    <footer><center>
+	<p class="footer">Esta página web ha sido desarrollada por AC.d.C como proyecto final para un curso de diseño y programación web en el centro de formación <a href="http://www.microforum.es/">Microforum</a> (Madrid).
+	Todos los datos personales introducidos se almacenarán en una base de datos. Se recomienda no usar datos personales reales. El usuario será responsable de todo lo
+	que ocurra con sus datos.</p>
+	<p class="footer">Este servicio se ofrece sin ningún tipo de garantía y el autor no se responsabiliza de ningún tipo de problema que pudiera ocasionar su uso.
+	Al usar este programa, ustéd acepta estas condiciones.</p>
+	<p class="footer">Tanto la plantilla como el programa usado en la página han sido desarrollados por AC.d.C. No está permitido su uso con fines comerciales.</p>
+	<p class="footer">Dirección de contacto del autor: <a href="mailto: ...@gmail.com">...@gmail.com</a></p>
+	</center></footer>
+    
+</body>
+</html>

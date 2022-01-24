@@ -1,0 +1,250 @@
+
+@font-face {
+	font-family: Ubuntu Condensed;
+	src: url('fonts/ubuntu-condensed/UbuntuCondensed-Regular.ttf');
+}
+
+@font-face {
+	font-family: Jura;
+	src: url('fonts/jura/Jura-Regular.ttf');
+}
+
+@font-face {
+	font-family: Jura Bold;
+	src: url('fonts/jura/Jura-Bold.ttf');
+}
+
+
+body {
+	background-color: #002b36; /*BASE1*/
+	color: #839496; /*CONTENT3*/
+	/*font-family: Consolas, Courier New, monospace;*/
+	font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: #268bd2;
+	/*font-family: 'Ubuntu Condensed', sans-serif;*/
+	font-family: 'Jura Bold', sans-serif;
+}
+
+strong, b {
+	color: #859900;
+}
+
+em, i {
+	color: #b58900;
+}
+
+u, cite {
+	color: #93a1a1;
+}
+
+big {
+	color: #d33682;
+}
+
+code {
+	color: #93a1a1;
+}
+
+mark {
+	background-color: #268bd2;
+	color: #eee8d5;
+}
+
+a {
+	text-decoration: underline;
+	color: #cb4b16;
+}
+
+a:visited {
+	color: #d33682;
+}
+
+a:hover {
+	color: #b58900;
+}
+
+ul, li {
+	list-style: circle;
+	color: #859900;
+}
+
+dt {
+	color: #cb4b16;
+}
+
+dd {
+	color: #b58900;
+}
+
+kbd {
+	font-family: 'courier new', sans-serif;
+	font-size: 9pt;
+}
+
+hr, fieldset {
+	border: 1px solid #268bd2;
+	box-shadow: 0px 0px 5px #2aa198;
+}
+
+legend, caption {
+	color: #268bd2;
+	font-weight: bolder;
+	font-size: 1.2em;
+	font-family: Jura;
+}
+
+caption {
+	text-align: center;
+}
+
+input[type="button"], input[type="reset"], input[type="submit"], button {
+	border: 2px solid #268bd2;
+	background-color: #073642;
+	color: #268bd2;
+	font-family: Consolas, Courier New, monospace;
+	box-shadow: 0px 0px 3px #268bd2;
+	transition: .5s linear;
+}
+
+input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, button:hover {
+	border: 2px solid #cb4b16;
+	color: #b58900;
+	box-shadow: 0px 0px 7px #cb4b16;
+	transition: .5s linear;
+}
+
+input[type="button"]:active, input[type="reset"]:active, input[type="submit"]:active, button:active {
+	border: 2px solid #b58900;
+	color: #b58900;
+	box-shadow: 0px 0px 7px #b58900;
+	transition: .1s linear;
+}
+
+input, textarea, select {
+	border: 2px solid #268bd2;
+	background-color: #073642;
+	color: #268bd2;
+	font-family: Consolas, Courier New, monospace;
+	box-shadow: 0px 0px 3px #268bd2;
+	transition: .5s linear;
+}
+
+table, td, tr {
+	border: 1px solid #268bd2;
+	border-collapse: collapse;
+}
+
+th {
+	background-color: #073642;
+	border: 1px solid #268bd2;
+	color: #268bd2;
+}
+
+tr.noborder, th.noborder, td.noborder {
+	border: none;
+}
+
+tr:nth-child(even)
+{
+	background-color: #073642;
+	color: #93a1a1;
+}
+
+.solarize {
+	border: 1px solid #268bd2;
+	box-shadow: 0px 0px 5px #268bd2;
+	text-align: justify;
+	padding: 10px;
+}
+
+.solarize-yellow {
+	border: 1px solid #b58900;
+	box-shadow: 0px 0px 5px #b58900;
+}
+
+.solarize-orange {
+	border: 1px solid #cb4b16;
+	box-shadow: 0px 0px 5px #cb4b16;
+}
+
+.solarize-red {
+	border: 1px solid #dc322f;
+	box-shadow: 0px 0px 5px #dc322f;
+}
+.solarize-magenta {
+	border: 1px solid #d33682;
+	box-shadow: 0px 0px 5px #d33682;
+}
+.solarize-violet {
+	border: 1px solid #6c71c4;
+	box-shadow: 0px 0px 5px #6c71c4;
+}
+.solarize-blue {
+	border: 1px solid #268bd2;
+	box-shadow: 0px 0px 5px #268bd2;
+}
+.solarize-cyan {
+	border: 1px solid #2aa198;
+	box-shadow: 0px 0px 5px #2aa198;
+}
+.solarize-green {
+	border: 1px solid #859900;
+	box-shadow: 0px 0px 5px #859900;
+}
+
+.solarize-dark-base1 {
+	background-color: #002b36;
+}
+
+.solarize-dark-base2 {
+	background-color: #073642;
+}
+
+.solarize-light-base1 {
+	background-color: #eee8d5;
+}
+
+.solarize-light-base2 {
+	background-color: #fdf6e3;
+}
+
+.solarize-tone-base1 {
+	color: #586e75;
+}
+.solarize-tone-base2 {
+	color: #657b83;
+}
+.solarize-tone-base3 {
+	color: #839496;
+}
+.solarize-tone-base4 {
+	color: #93a1a1;
+}
+
+.solarize-tone-yellow {
+	color: #b58900;
+}
+.solarize-tone-orange {
+	color: #cb4b16;
+}
+.solarize-tone-red {
+	color: #dc322f;
+}
+.solarize-tone-magenta {
+	color: #d33682;
+}
+.solarize-tone-violet {
+	color: #6c71c4;
+}
+.solarize-tone-blue {
+	color: #268bd2;
+}
+.solarize-tone-cyan {
+	color: #2aa198;
+}
+.solarize-tone-green {
+	color: #859900;
+}

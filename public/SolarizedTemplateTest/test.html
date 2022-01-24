@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="solarized.css">
+	<link rel="stylesheet" href="highlight/styles/solarized-dark.css">
+	<script src="highlight/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+	<body>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in velit commodo, interdum massa quis, eleifend leo. Nulla consequat dolor fringilla magna malesuada, sed finibus massa vestibulum. Suspendisse commodo purus et magna auctor varius. Nulla in quam et erat aliquam sagittis. Praesent in consequat diam, mollis faucibus arcu. Aenean laoreet fringilla porttitor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque vitae lacus nec nulla sodales tincidunt. Curabitur quis tristique odio. Cras in elit et nulla consequat placerat. Morbi ac sodales tellus. Quisque porta felis vitae pulvinar tempus. Sed arcu turpis, congue consectetur ante quis, congue dictum urna. Integer ac nunc sed quam ultrices venenatis. Donec sed ullamcorper nisl.</p>
+
+	<table>
+		<tr>
+		<td>Lorem</td>
+		<td>Lorem ipsum dolor sit amet</td>
+		</tr>
+		<tr>
+		<td>ipsum</td>
+		<td>ipsum dolor sit amet, consectetur </td>
+		</tr>
+			<tr>
+		<td>dolor</td>
+		<td>elit. Integer in velit commod</td>
+		</tr>
+		<tr>
+		<td>sit</td>
+		<td>m ipsum dolor sit amet, consectetur adipiscing elit. Integer in velit commodo</td>
+		</tr>
+		<tr>
+		<td>amet</td>
+		<td>olor sit amet, consectetur adipiscing elit. Integ</td>
+		</tr>
+	</table>
+	
+<p>Vestibulum congue eu justo a feugiat. Aliquam erat volutpat. Duis pretium sed mi quis laoreet. Integer vitae urna in augue feugiat laoreet. Cras aliquet dui suscipit iaculis posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed sollicitudin semper pellentesque. Donec massa sem, pharetra ut lectus in, tempus eleifend sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec varius ex eros, et dictum diam fermentum vitae. Suspendisse pretium consectetur nisi ut placerat. Duis eget nulla pharetra, bibendum risus eget, ultrices nisl. Aliquam dignissim enim porta magna mollis, ut ultrices tellus porta. Curabitur non gravida turpis, quis iaculis purus. Nullam non purus et nunc mollis ullamcorper eu ac orci. Phasellus feugiat odio nec felis pellentesque commodo.</p>
+
+		<pre><code class="cpp">#include <stdio.h>
+			
+			int main(int args, char** argv)
+			{
+				printf("Hello World!");
+				return 0;
+			}
+		</code></pre>
+
+<p>Vestibulum urna est, consequat ut libero vel, consequat vestibulum eros. In eget eros in quam laoreet lobortis sed viverra urna. Nullam ultricies quam ut metus efficitur euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam dictum vulputate pretium. Suspendisse id urna auctor neque fermentum auctor ut vel velit. Nullam faucibus scelerisque dictum. Curabitur lectus augue, luctus at molestie at, viverra non tellus.</p>
+
+<ul>
+	<li>Vestibulum urna est</li>
+	<li>consequat ut libero vel</li>
+	<li>consequat vestibulum eros</li>
+	<li>In eget eros</li>
+	<li>quam laoreet lobortis</li>
+</ul>
+
+<p>Nulla a lectus ut sem finibus congue. Sed at leo ac metus consequat pulvinar a a turpis. Ut nec lorem id ex malesuada semper. Donec lacinia erat vitae ipsum suscipit, non efficitur quam bibendum. Aenean fermentum molestie justo semper pretium. Cras sodales tellus a massa congue egestas. Suspendisse sit amet feugiat purus. Vivamus a tristique quam. Suspendisse orci nibh, dignissim sit amet dolor sit amet, maximus finibus tellus. Proin sapien urna, consequat at odio ut, tempus scelerisque lacus. Aliquam porta tempus bibendum. Curabitur ac pulvinar justo. Vestibulum et odio quis nibh laoreet vulputate. Sed congue et lorem ut convallis.</p>
+
+		<pre><code class="cpp">bool test_checksum(char* fname, ENTRY filed)
+{
+	std::fstream file;
+	file.open(fname, std::fstream::in | std::fstream::binary);
+	size_t res = 0;
+	
+	while(!file.eof())
+	{
+		res ^= file.get();
+		res += file.get();
+		res = ~res;
+		res++;
+	}
+	
+	file.close();
+	
+	if(res == filed.CHKSM)
+		return true;
+	return false;
+}
+		</code></pre>
+
+<p>Proin semper turpis sit amet magna varius consequat. Maecenas euismod pellentesque tellus eu sodales. Proin mattis rhoncus ante, a porttitor tortor viverra et. Aliquam interdum velit massa, eget eleifend ex volutpat eu. Donec tristique neque non enim malesuada, eu semper augue iaculis. In aliquet aliquam elit, et ullamcorper eros tristique ut. Nullam scelerisque metus non orci maximus, quis faucibus ante rhoncus. Cras dignissim dapibus nisl et pulvinar. Ut cursus nulla at ex venenatis ullamcorper.</p>
+	</body>
+</html>

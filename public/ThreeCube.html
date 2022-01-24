@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+	<script src="http://threejs.org/build/three.min.js"></script>
+	<script src="http://threejs.org/examples/js/libs/tween.min.js"></script>
+	<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+</head>
+<body>
+	<script>
+		var wwidth = window.innerWidth;
+		var wheight = window.innerHeight;
+		var c = new THREE.WebGLRenderer();
+		c.setSize(wwidth,wheight);
+		document.body.appendChild(c.domElement);
+		c.domElement.style.position = "absolute";
+		c.domElement.style.top = "0";
+		c.domElement.style.left = "0";
+
+		var scene = new THREE.Scene;
+
+		var cubeMesh = new THREE.CubeGeometry(140,140,140);
+		var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x9999FF});
+		var cube = new THREE.Mesh(cubeMesh, cubeMaterial);
+
+		scene.add(cube);
+
+		var cam = new THREE.PerspectiveCamera(45,(wwidth/wheight),0.1,10000);
+		cam.position.y = 160;
+		cam.position.z = 400;
+		cam.lookAt(cube.position);
+
+		scene.add(cam);
+
+		var light1 = new THREE.PointLight(0xff0044);
+		light1.position.set(120,260,100);
+
+		var light2 = new THREE.PointLight(0x4499ff);
+		light2.position.set(-100,100,200);
+
+		scene.add(light1);
+		scene.add(light2);
+
+		c.render(scene,cam);
+
+		var x=0;
+		function render_scene(){
+			c.domElement.style.width = "100%"
+			c.domElement.style.height = "100%";
+
+			cube.rotation.y += Math.PI * 0.5 / 180;
+			cube.rotation.z += Math.PI * Math.cos(x++/50) / 180;
+			c.render(scene,cam);
+			requestAnimationFrame(render_scene);
+		}
+		
+		window.addEventListener('resize', function (){
+			cam.aspect = window.innerWidth / window.innerHeight;
+			cam.updateProjectionMatrix();
+			c.setSize(window.innerWidth, window.innerHeight);
+		}, false);
+
+		render_scene();
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="margin: 0; position: absolute; top: 0; left: 0; z-index: 100;">NO CANVAS</canvas>
+
+	<img src="megaman.png" id="megaman" style="display:none;" />
+	<script>
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext('2d');
+		var megaman_sheet = document.getElementById("megaman");
+		var image_ready = false;
+		var frame = 0;
+		var frames = 10;
+
+		megaman_sheet.onload = function() {
+			image_ready = true;
+		}
+
+		function draw(){
+			ctx.canvas.width = window.innerWidth;
+			ctx.canvas.height = window.innerHeight;
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+			if(image_ready)
+				for(var x = 0; x < 10; x++)
+					for(var y = 0; y < 10; y++)
+				ctx.drawImage(megaman_sheet,32*frame,96,32,32,100+(42*x),100+(42*y),32,32); //<- Cortado (img,sx,sy,sw,sh,dx,dy,dw,dh)
+				/*ctx.drawImage(megaman_sheet, 100,100,500,331);*/ //<- Dibujo normal
+				
+		}
+
+		window.setInterval(draw, 1);
+		window.setInterval(function(){
+			frame++;
+				if(frame > frames)
+					frame = 0;
+		},75);
+	</script>
+</body>
+</html>

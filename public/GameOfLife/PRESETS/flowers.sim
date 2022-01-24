@@ -1,0 +1,7 @@
+grid 2
+line 124 0 124 249
+line 0 124 249 124
+hollow 0 0 50 50
+hollow 0 199 50 249
+hollow 199 199 249 249
+hollow 199 0 249 50

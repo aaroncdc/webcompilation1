@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin: 0; padding: 0;">
+    <canvas id="canv" style="margin: 0; padding: 0; position: absolute; top: 0; left: 0; z-index: 100;"></canvas><br/>
+</body>
+<script src="color.js"></script>
+<script>
+
+    /* Draw a pixel */
+    function PSET(x,y,color){
+        let dat = ctx.getImageData(x,y,1,1);
+        dat.data[0] = color.r;
+        dat.data[1] = color.g;
+        dat.data[2] = color.b;
+        dat.data[3] = color.a;
+        ctx.putImageData(dat,x,y);
+    }
+    
+    /* Creates an RGBA color structure */
+    function RGBA(r,g,b,a){
+        return {
+        r: r,
+        g: g,
+        b: b,
+        a: a
+        }
+    }
+    
+    /* Creates an RGBA color string */
+    function RGBASTR(r,g,b,a){
+        return 'rgba('+r+','+g+','+b+','+a+')';
+    }
+    
+    /* UNUSED: Vector to linear array index */
+    function VEC2LIN (x,y,sz){
+        return ((y * sz) + x)<<2;
+    }
+    /* HTML Canvas and 2D context */
+    var c = document.getElementById("canv");
+    var ctx = c.getContext("2d");
+    ctx.canvas.width = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
+    /* Cursors (defined by their colors) */
+    var cursores = [];
+    var colores = [RGBA(255,0,0,255), RGBA(0,255,0,255), RGBA(0,0,255,255), RGBA(255,0,255,255)];
+
+    var d = 0;
+    
+    /* PIPE class (Tuberia is the spanish word for Pipe) */
+    class Tuberia {
+        constructor(color, glitter=false){
+            /* Parameters */
+            this.id = Math.ceil(Math.random()*65535+1);
+            this.x = Math.random()*ctx.canvas.width;
+            this.y = Math.random()*ctx.canvas.height;
+            this.direction = 0;
+            this.bias = 10;
+            this.color = color;
+            this.dead = false;
+            this.glitter = glitter;
+            /* Generates a new random direction */
+            this.newDirection();
+        }
+        
+        /* Generates a random direction */
+        newDirection(){
+            let old = this.direction;
+            while(this.direction == old)
+                this.direction = Math.round(Math.random()*4);
+        }
+        
+        /* Next movement target of the cursor */
+        nextPixel(){
+            let nX = 0, nY = 0;
+            switch(this.direction)
+            {
+            // Right
+            case 0:
+                return { x: this.x - 1, y: this.y};
+            // Up
+            case 1:
+                return { x: this.x, y: this.y + 1};
+            break;
+            // Left
+            case 2:
+                return { x: this.x + 1, y: this.y};
+            break;
+            // Down
+            case 3:
+                return { x: this.x, y: this.y - 1};
+            break;
+            default:
+                return { x: this.x, y: this.y};
+            }
+
+        }
+        
+        /* Check if the next pixel is free */
+        checknext() {
+            //TODO: This could use some improvement
+            /* Get each adyacent pixel */
+            let pa = ctx.getImageData(this.x-1,this.y,1,1).data;
+            let pb = ctx.getImageData(this.x,this.y+1,1,1).data;
+            let pc = ctx.getImageData(this.x+1,this.y,1,1).data;
+            let pd = ctx.getImageData(this.x,this.y-1,1,1).data;
+            
+            /* Check if they are free and if it's a valid pixel */
+            let pm = [((pa[0]+pa[1]+pa[2])===0 && this.x - 1 >= 0),
+                    ((pb[0]+pb[1]+pb[2])===0 && this.y + 1 <= ctx.canvas.height),
+                    ((pc[0]+pc[1]+pc[2])===0 && this.x + 1 <= ctx.canvas.width),
+                    ((pd[0]+pd[1]+pd[2])===0) && this.y - 1 >= 0];
+            
+            /* Compute possible moves */
+            let am = [];
+            
+            /* If no movement is possible, bury the cursor */
+            if(pm[0]===false && pm[1]===false && pm[2]===false && pm[3]===false){
+                this.bury();
+                return false;
+            }else{
+                /* Add every possible movement */
+                for(var mov = 0; mov < pm.length; mov++){
+                    if(pm[mov]===true)
+                        am.push(mov);
+                }
+                
+        /* If not forced to turn, add a chance of sudden turning */
+                if(am.includes(this.direction)){
+                    let m = Math.round(Math.random()*100);
+                    /* Chance is 5/100 (or 5%) */
+                    if(m < 5)
+                        this.direction = am[Math.round(Math.random()*am.length-1)];
+                    /* 95% chance of keeping the original direction */
+                    return true;
+                }else{
+                
+                    /* Set to a random direction */
+                    this.direction = am[Math.round(Math.random()*am.length-1)];
+                    return true;
+                }
+            }
+        }
+        
+        bury(){
+            this.dead = true;
+            this.x = -1;
+            this.y = -1;
+        }
+        
+        setPoint(px, py){
+            this.x = px;
+            this.y = py;
+        }
+    }
+    
+    var mainInt = null;
+    function Init(){
+        clrscr();
+        
+        /*for(var color of colores){
+            cursores.push(new Tuberia(color, true));
+        }*/
+        for(let x = 0; x < 3000; x++)
+            cursores.push(new Tuberia(RGBA(0,0,0,255), true));
+        
+        clearInterval(mainInt);
+        mainInt = setInterval(updateScr, 1);
+    }
+
+    function updateScr(){
+        //clrscr();
+        var cd = 0;
+        d++;
+        for(var cursor of cursores){
+
+            if(cursor.dead){
+                cd++;
+                continue;
+            }
+        
+            cursor.checknext();
+                
+            
+            let next = cursor.nextPixel();
+            cursor.setPoint(next.x, next.y);
+            PSET(cursor.x, cursor.y, (cursor.glitter?glitterstr(d):cursor.color));
+        }
+        if(cd >= cursores.length)
+        {
+            cd = 0;
+            Init();
+        }
+    }
+    
+    function clrscr() {
+        ctx.fillStyle="black";
+        ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+    }
+    
+    console.log(glitterstr(d));
+    Init();
+</script>
+</html>

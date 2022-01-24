@@ -1,0 +1,79 @@
+		.item-list-container {
+			width: 100%;
+			height: 260px;
+			/*border: 1px solid black;*/
+			overflow: hidden;
+			box-sizing: border-box;
+			position: relative;
+			top: 0;
+			left: 0;
+			border: 1px solid lightgray;
+		}
+		.item-list-scroll-hide {
+			width: auto;
+			height: 110%;
+			overflow-x: scroll;
+			overflow-y: hidden;
+		}
+		.item-list {
+			min-width: 1920px;
+			height: 254px;
+			/*border: 1px solid black;*/
+			margin: 0;
+			padding: 10px;
+			overflow: hidden;
+		}
+		.element {
+			width: 150px;
+			height: 240px;
+			margin-left: 15px;
+			margin-right: 15px;
+			display: block;
+			float: left;
+			text-align: center;
+			position: relative;
+			top: 0;
+			bottom: 0;
+		}
+		.item-list-scroll-left, .item-list-scroll-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 120px;
+			height: 100%;
+			z-index: 1;
+			background: rgba(0,0,0,.75);
+			color: white;
+			opacity: 0.2;
+			font-size: 30pt;
+			text-align: center;
+			padding-top: 90px;
+		}
+		.item-list-scroll-left {
+			display: none;
+			left: 0px;
+		}
+
+		.item-list-scroll-right {
+			left: initial;
+			right: 0;
+		}
+
+		.item-list-scroll-left:hover, .item-list-scroll-right:hover {
+			opacity: 1;
+			transition: .5s ease-in-out;
+		}
+
+		@media all and (max-width: 767px) {
+			.item-list-scroll-left, .item-list-scroll-right {
+				width: 75px;
+			}
+		}
+
+		@media all and (max-width: 377px) {
+			.item-list-scroll-left, .item-list-scroll-right {
+				width: 40px;
+				font-size: 24pt;
+				padding-top: 100px;
+			}
+		}

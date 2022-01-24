@@ -1,0 +1,301 @@
+@font-face {
+    font-family: 'Rock-Salt';
+    src: url('../fonts/rock_salt/RockSalt-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+
+@media all and (max-width: 1270px){
+
+    content {
+        width: 930px;
+    }
+}
+
+@media all and (max-width: 840px){
+    #right-pane {
+        display: none;
+    }
+    #left-pane {
+        display: block;
+        float: none;
+        width: 510px;
+        min-height: 150px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        position: relative;
+        left: 50%;
+        margin-left: -270px;
+        box-sizing: border-box;
+    }
+
+    #userbox {
+        width: 510px;
+    }
+
+    .editor {
+        width: 500px;
+        margin: 0;
+        padding: 0;
+        margin: 0 auto;
+
+    }
+    #userinput {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .editor-buttons {
+        margin: 0;
+        padding: 0;
+    }
+
+    #editor .editor-buttons-bottom {
+        position: absolute;
+        top: -550px;
+        left: 0;
+    }
+
+    #timeline {
+        display: block;
+        float: none;
+        width: 510px;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding-top: 10px;
+        position: relative;
+        top: 360px;
+    }
+
+    #settings-pane {
+        display: block;
+        float: none;
+        width: 510px;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding-top: 10px;
+        position: relative;
+        top: -50px;
+    }
+
+    content {
+        width: 520px;
+    }
+    .emoji-menu {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        width: 350px;
+        height: 350px;
+        background-color: white;
+        top: 20px;
+        left: -350px;
+        box-sizing: border-box;
+        border: 1px solid #a8a8a8;
+        border-radius: 5%;
+    }
+
+    #trendings {
+        margin: 0 auto;
+    }
+
+    #right-pane {
+        display: block;
+        float: none;
+        width: 510px;
+        min-height: 150px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        position: relative;
+        left: 60px;
+        top: -860px;
+        box-sizing: border-box;
+    }
+}
+
+@media all and (max-width: 560px)
+{
+    .logohead {
+        display: none;
+    }
+    span.title {
+        position: relative;
+        top: -10px;
+        left: 5px;
+    }
+
+    div#left-pane {
+        box-sizing: border-box;
+        display: block;
+        width: 360px !important;
+        height: auto !important;
+    }
+
+    div#userbox {
+        width: 360px !important;
+        height: auto !important;
+    }
+
+    div#trendings {
+        width: 360px !important;
+        height: auto !important;
+    }
+
+    div#infobox1 {
+        width: 360px !important;
+        height: auto !important;
+        position: relative !important;
+        top:50px !important;
+        left: -58px !important;
+        margin: 0 !important;
+        margin-top: 5px !important;
+        box-sizing: border-box !important;
+    }
+
+    div#timeline {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    div#timelinecontent{
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    div.message * {
+        width: 87% !important;
+        box-sizing: border-box !important;
+    }
+
+    div.message {
+        width: 87% !important;
+        box-sizing: border-box !important;
+    }
+
+    div.message-header {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    span.message-author {
+        position: absolute;
+        top: 3px;
+    }
+    span.message-date {
+        position: absolute;
+        top: 28px;
+        left: 60px;
+    }
+
+    img.msavatar {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    img.media-med {
+        width: 46% !important;
+    }
+    img.media-small {
+        width: 25% !important;
+    }
+
+    img.reply-user-avatar {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    #button-register, #button-login {
+        font-size: 10pt !important;
+        width: 100px;
+        height: 25px;
+    }
+
+    #button-register {
+        position: absolute;
+        right: 120px;
+    }
+
+    #button-login {
+        position: absolute;
+        right: 0;
+    }
+
+    .hottopiclist ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .hottopiclist a {
+        font-size: 12pt !important;
+    }
+
+    span.panel-header {
+        font-size: 14pt;
+        color: orange;
+        background-color: black;
+    }
+
+    span.title {
+        font-family: 'Rock-Salt' !important;
+        font-size: 18pt;
+        position: relative;
+        top: 8px;
+    }
+    .user-info-login {
+        position: absolute;
+        width: 235px;
+        right: 0 !important;
+    }
+
+    .user-options-login {
+        position: absolute;
+        right: 5px !important;
+    }
+    div.message-options i {
+        width: 16px !important;
+        height: 16px !important;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    div.editor {
+        width: 95% !important;
+    }
+    #userinput {
+        width: 100% !important;
+        padding: 5px !important;
+    }
+
+    ul.options-menu {
+        width: 100% !important;
+        position: relative;
+        left: 10px;
+    }
+
+    div#settings-pane {
+        width: 80% !important;
+        position: relative;
+        top: 30px;
+    }
+
+    div#settings-breadcumb {
+        width: 80% !important;
+        font-size: 9pt !important;
+    }
+
+    div#settings-stuff {
+        width: 100% !important;
+    }
+
+    div.emoji-menu {
+        position: relative;
+        top: -15px;
+        left: -308px;
+    }
+}

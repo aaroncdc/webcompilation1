@@ -1,0 +1,88 @@
+body{
+	background: rgb(3,3,3);	
+}
+
+header {
+	background: rgb(0,0,0);
+	background-image: url('../proto/head.jpg');
+	background-repeat: no-repeat;
+	background-position: 0% 30%;
+	background-size: 100%; 
+	color:white;
+	padding: 60px;
+}
+
+header h1 {
+	margin: 0;
+	padding: 0;
+	text-shadow: 3px 3px 1px black;
+}
+
+content {
+	color: white;	
+}
+
+article {
+	background: rgb(40,40,40);
+	color: rgb(235,235,235);
+	border: 1px solid rgb(60,60,60);
+}
+
+nav {
+	background: rgb(0,0,0);
+}
+
+ul a {
+	color: lightgreen;
+}
+
+ul a {
+	border-left: 1px solid lightgreen;
+	border-right: none;
+	transition: linear .3s;
+}
+
+ul a:last-child {
+	border-left: 1px solid lightgreen;
+	border-right: 1px solid lightgreen;
+}
+
+ul a:hover {
+	background: darkgreen;
+	transition: linear .3s;
+}
+
+@media all and (max-width: 520px)
+{
+	ul a {
+		border-left: none;
+		border-right: none;
+		border-top: 1px solid lightgreen;
+		border-bottom: none;
+		transition: linear .3s;
+	}
+
+	ul a:last-child {
+		border-top: 1px solid lightgreen;
+		border-bottom: 1px solid lightgreen;
+	}
+}
+
+
+/* Editor colors */
+#entry-editor {
+	background: rgb(40,40,40);
+	color: rgb(235,235,235);
+	border: 1px solid rgb(60,60,60);
+}
+
+.button {
+	display: block;
+	float: left;
+	width: 35px;
+	height: 35px;
+	border: 1px solid white;
+	box-sizing: border-box;
+	text-align:center;
+	line-height: 30px;
+}

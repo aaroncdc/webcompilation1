@@ -1,0 +1,127 @@
+/*
+    SOLARIZED.CSS
+    Created on : 16-feb-2016, 9:47:56
+    Author     : Aaron CdC
+*/
+
+body {
+    background-color: #00343e;
+    color: #009592;
+    font-family: "Courier New", monospace;
+}
+
+b, h1, h2, h3, h4, h5, h6, th {
+    color: #007cb9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Lucida Console";
+}
+
+td, th {
+    background-color: #002b33;
+    padding: 2px;
+}
+
+th {
+    background-color: #00191d;
+}
+
+td.sl:hover {
+    background-color: #00161a;
+    border-color: #007cb9;
+    padding: 2px;
+}
+
+a {
+    color: #007cb9;
+    text-decoration: none;
+    font-style: italic;
+}
+
+a:hover {
+    color: #00aaff;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #000;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 0px 0px 5px #009996;
+}
+
+table.bl {
+    border-collapse: collapse;
+    border: 0px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 0px 0px 5px #009996;
+}
+
+input, select, textarea {
+    border: 1px solid #000;
+    background-color: #007cb9;
+    color: #99ffe6;
+    font-family: "Courier New", monospace;
+    outline: none;
+}
+
+button {
+   border: 1px solid #000;
+   background-color: #007cb9;
+   color: #1affc6;
+   outline: none;
+   margin: 2px;
+}
+
+input:hover, select:hover, textarea:hover {
+    border: 1px solid #000;
+    background-color: #0099e6;
+    color: #99ffe6;
+    outline: none;
+}
+
+button:hover {
+   border: 1px solid #000;
+   background-color: #0099e6;
+   color: #1affc6;
+   outline: none;
+}
+
+button:active {
+   border: 1px solid #000;
+   background-color: #0099e6;
+   color: #00664d;
+   outline: none;
+}
+
+ul, ol {
+    color: #007cb9;
+    margin: 5px;
+}
+li {
+    color: #fff;
+}
+
+mark {
+    background-color: #009592;
+    color: #fff;
+    box-shadow: 0px 0px 7px #009592;
+}
+
+hr {
+    border: 1px solid #009592;
+    box-shadow: 0px 0px 7px #009592;
+}
+
+pre {
+    color: #fff;
+}
+
+fieldset {
+	border: 1px solid #009592;
+	box-shadow: 0px 0px 5px #009996;
+}

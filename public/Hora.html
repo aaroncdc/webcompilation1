@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Reloj con Javascript</title>
+	<style type="text/css">
+		body {
+			background-color: black;
+			color: white;
+			overflow: hidden;
+		}
+		#hora {
+			font-size: 4em;
+		}
+		#minutos {
+			font-size: 4em;
+		}
+		#segundos {
+			font-size: 4em;
+		}
+		#milis {
+			font-size: 2em;
+		}
+		#symbols {
+			font-family: wingdings;
+			font-size: 6em;
+		}
+		#centrar {
+			text-align:center;
+		}
+	</style>
+	<script type="text/javascript">
+		
+		var unixtarget = Date.now();
+		function padmilis(num){
+			if(num < 10)
+				return("00"+num);
+			else if(num > 10 && num < 100)
+				return("0"+num);
+			else
+				return(""+num);
+		}
+
+		function padnumber(num) {
+			if(num < 10)
+				return ("0" + num);
+			else
+				return ("" + num)
+		}
+
+		function updatetime() {
+			var dat = new Date();
+			var unixdat = Date.now();
+			var diff = unixtarget - unixdat;
+			var ddiff = new Date(diff);
+			var horas = ddiff.getHours();
+			var mins = ddiff.getMinutes();
+			var secs = ddiff.getSeconds();
+			var ms = ddiff.getMilliseconds();
+			document.getElementById("hora").innerHTML = padnumber(horas) + ":";
+			document.getElementById("minutos").innerHTML = padnumber(mins) + ":";
+			document.getElementById("segundos").innerHTML = padnumber(secs) + ":";
+			document.getElementById("milis").innerHTML = padmilis(ms);
+
+			document.getElementById("symbols").innerHTML = (padmilis(ms) + ms*2 + ms * 10);
+
+			var spans = document.getElementsByTagName("span");
+			if(ms > 800 && ms < 1000)
+			{
+				for(i in spans)
+				{
+					spans[i].style.color = "red";
+					spans[i].style.textShadow = "2px 2px 0px red";
+				}
+			}else if(ms > 100 && ms < 500)
+			{
+				for(i in spans)
+				{
+					spans[i].style.color = "white";
+					spans[i].style.textShadow = "none";
+				}
+			}
+
+			var pr = Math.round(1-((unixtarget+diff)/unixtarget));
+			console.log(pr);
+			document.getElementById("progress").value = pr;
+		}
+
+		window.setInterval(updatetime, 1);
+
+	</script>
+</head>
+<body>
+	<div id="centrar">
+		<span id="hora">12</span>
+		<span id="minutos">12</span>
+		<span id="segundos">12</span>
+		<span id="milis">12</span><br/>
+		<span id="symbols"></span>
+		<div>ENCRIPTACIÓN: <progress value="0" max="100" id="progress"></progress></div>
+		<script>updatetime();</script>
+	</div>
+</body>
+</html>

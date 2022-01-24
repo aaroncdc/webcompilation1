@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box !important;
+}
+
+html, body {
+    background: #ddd;
+}
+
+div.main-container {
+    background-color: white;
+}
+
+header {
+    width: 100%;
+    height: 75px;
+}
+
+.boxcontainer {
+    
+}
+
+.itsabox {
+    display: block;
+    width:100%;
+    height: 100%;
+    padding: 10px;
+    text-align: justify;
+}
+
+.main-nav, .mobile-nav {
+    background-color: #b75d2a !important;
+    display: block;
+}
+
+.mobile-nav {
+    background-color: #b75d2a !important;
+    display: none;
+}
+
+.mobile-sub {
+    margin: 7.5px 0px !important;
+}
+
+.main-nav ul li.active a, .mobile-nav ul li.active a {
+    background: #f9803b !important;
+}
+
+.main-nav ul li a, .mobile-nav ul li a {
+    color: white !important;
+}
+
+#mobile-nav-button {
+    font-size: 24pt;
+    text-align: right;
+}
+
+#mobile-nav-button:hover ul {
+    display: block;
+    font-size: 13pt;
+    text-align: left;
+}
+
+.mobile-sub {
+    display: none;
+}
+
+.mobile-nav ul li:hover:not(#mobile-nav-button), .main-nav ul li:hover {
+    background: #f9803b !important;
+    transition: 0.5s ease-in-out;
+}
+
+.mobile-nav ul li:not(#mobile-nav-button), .main-nav ul li {
+    background: #b75d2a !important;
+    transition: 0.5s ease-in-out;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+div.top-bar {
+    /*background: #f9803b !important;*/
+    background: #b75d2a !important;
+    width: 99.8% !important;
+    height: 25px;
+}
+
+i {
+    margin: 5px;
+    color: white !important;
+}
+
+.top-bar-1 {
+    color: white;
+    text-align: left;
+}
+
+.top-bar-2 {
+    color: white;
+    text-align: right;
+}
+
+.top-bar-2 input {
+    height: 20px;
+    color: black;
+    width: 130px;
+    font-size: 8pt;
+    position: relative;
+    top: -1px;
+    border: 1px solid #f9803b;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.footer-section {
+    height: 300px;
+    background: #b75d2a;
+    margin-top: 30px;
+    color: white !important;
+}
+
+@media all and (max-width: 732px) {
+    .main-nav {
+        display: none;
+    }
+    .mobile-nav {
+        display: block;
+        height: 55px;
+    }
+
+    #mobile-nav-button {
+        /*position: absolute;
+        top: 0;
+        right: 0;*/
+        position: relative;
+        top: -57px;
+    }
+
+    #mobile-nav-button ul {
+        position: relative;
+        top: -15px;
+    }
+}

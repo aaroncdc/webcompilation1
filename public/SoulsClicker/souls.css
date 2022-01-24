@@ -1,0 +1,17 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.tophead {
+	margin: 0;
+	padding: 10px;
+}
+
+.nexusbtn {
+	width: 210px;
+	height: 210px;
+}
+
+ul {
+	list-style: none;
+}

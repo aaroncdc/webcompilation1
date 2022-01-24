@@ -1,0 +1,360 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-feb-2016, 12:41:01
+    Author     : Aaron C.d.C
+*/
+
+@charset "utf-8";
+/* CSS Document */
+
+/* Estílo para el placeholder de las cajas de texto */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #555;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #555;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #555;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #555;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #555;
+}
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #454545;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0;
+	overflow: hidden;
+}
+
+img.logoimg {
+	margin: 5px;
+}
+
+h2.title {
+	color: #2FBBFF;
+	font-size: 30px;
+	margin-left: 5px;
+}
+
+article.login {
+    background-color: #F1FF8C;
+	background-image: url("../static/portada.jpg");
+    width: 100%;
+    height: 980px;
+    position: relative;
+    top: -20px;
+    left: 0;
+    padding: 0;
+}
+
+article.info {
+    background-color: #fff;
+    width: 100%;
+    height: 720px;
+    position: relative;
+    top: -20px;
+    left: 0;
+    padding: 0;
+}
+
+article.more {
+	position: relative;
+	width: 100%;
+	height: 150px;
+	top: 120px;
+	left: 0;
+	font-family: Arial, sans-serif;
+	padding: 5px;
+}
+
+footer {
+    background-color: #454545;
+    width: 100%;
+    height: 320px;
+    position: relative;
+    top: -20px;
+    left: 0;
+    padding: 0;
+}
+@media all and (min-width: 1025px) {
+    div.loginform {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 60%;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    } 
+}
+
+@media all and (max-width: 1024px) {
+    div.loginform {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 50%;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+@media all and (max-width: 720px) {
+    div.loginform {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 20% !important;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+@media all and (max-width: 360px) {
+    div.loginform {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 1% !important;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+/****/
+@media all and (min-width: 1025px) {
+    div.loginform2 {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 60%;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    } 
+}
+
+@media all and (max-width: 1024px) {
+    div.loginform2 {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 50%;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+@media all and (max-width: 720px) {
+    div.loginform2 {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 20% !important;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+@media all and (max-width: 360px) {
+    div.loginform2 {
+        position: relative;
+        width: 340px;
+        height: 480px;
+        top: 40px;
+        left: 1% !important;
+        background-color: #fff;
+        z-index: 1;
+        border-radius: 25px 25px 25px 25px;
+        padding: 5px;
+        transition: left 1s;
+        box-shadow: 3px 3px 15px #555;
+    }
+}
+
+h2 {
+    position: relative;
+    font-family: Arial, sans-serif;
+    color: #454545;
+}
+
+fieldset {
+    border: 0;
+}
+
+input.text {
+    height: 40px;
+    position: relative;
+    width: 75%;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+input.button {
+    height: 40px;
+    width: 120px;
+    border: 1px solid #eee;
+    margin: 2px;
+    background-color: #99c4ff;
+    color: #fff;
+}
+
+input.button:hover {
+    height: 40px;
+    width: 120px;
+    border: 1px solid #eee;
+    margin: 2px;
+    background-color: #99c4ff;
+    background: linear-gradient(#99c4ff, #e6f0ff);
+    color: #fff;
+}
+
+article.corporate {
+	font-family: Verdana, Geneva, sans-serif;
+    position: relative;
+    font-size: 40px;
+    left: -450px;
+    top: -320px;
+    color: #fff;
+    width: 340px;
+	text-shadow: 0px 0px 4px  #888;
+	background: rgba(0,0,0,0.1);
+	border-radius: 15px 15px 15px 15px;
+	padding: 5px;
+}
+
+article.corporate2 {
+	font-family: Verdana, Geneva, sans-serif;
+    position: relative;
+    font-size: 40px;
+    left: -450px;
+    top: -150px;
+    color: #fff;
+    width: 340px;
+	text-shadow: 0px 0px 4px  #888;
+	background: rgba(0,0,0,0.1);
+	border-radius: 15px 15px 15px 15px;
+	padding: 5px;
+}
+
+@media all and (max-width: 720px) {
+	article.corporate {
+		font-family: Verdana, Geneva, sans-serif;
+		position: relative;
+		font-size: 40px;
+		left: -550px;
+		top: -320px;
+		color: #fff;
+		width: 340px;
+		transition: left 1s;
+	}
+}
+
+input.roundb {
+		border: 3px solid #003399;
+		background-color: #0cf;
+		width: 100px;
+		height: 100px;
+		border-radius: 50px;
+		box-shadow: 2px 4px 1px #003097;
+		outline: none;
+		transition: linear 0.5s;
+}
+
+input.roundb:hover {
+		border: 3px solid #003399;
+		background-color: #fff;
+		width: 100px;
+		height: 100px;
+		border-radius: 50px;
+		box-shadow: 2px 4px 1px #003097;
+		outline: none;
+		transition: linear 0.5s;
+}
+
+input.roundb:active {
+		border: 3px solid #003399;
+		background-color: #eafafa;
+		width: 100px;
+		height: 100px;
+		border-radius: 50px;
+		box-shadow: 2px 4px 1px #003097;
+		outline: none;
+		transition: linear 0.1s;
+}
+
+footer {
+	color: #afafaf;
+	font-size: 10px;
+	font-family: Verdana, Geneva, sans-serif;
+	padding: 10px;
+	
+}
+
+p.footer {
+	vertical-align: bottom;
+}
+
+a {
+	color: #afafaf;
+}

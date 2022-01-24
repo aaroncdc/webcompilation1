@@ -1,0 +1,106 @@
+{
+    "default": {
+        "mime": "application/octet-stream",
+        "type": "binary"
+    },
+    "css": {
+        "mime": "text/css",
+        "type": "text"
+    },
+    "htm": {
+        "mime": "text/html",
+        "type": "text"
+    },
+    "html": {
+        "mime": "text/html",
+        "type": "text"
+    },
+    "ico": {
+        "mime": "image/x-icon",
+        "type": "binary"
+    },
+    "gif": {
+        "mime": "image/gif",
+        "type": "binary"
+    },
+    "jpg": {
+        "mime": "image/jpeg",
+        "type": "binary"
+    },
+    "jpeg": {
+        "mime": "image/jpeg",
+        "type": "binary"
+    },
+    "js": {
+        "mime": "application/javascript",
+        "type": "text"
+    },
+    "json": {
+        "mime": "application/json",
+        "type": "text"
+    },
+    "mp3": {
+        "mime": "audio/mp3",
+        "type": "binary"
+    },
+    "mp4": {
+        "mime": "video/mp4",
+        "type": "binary"
+    },
+    "ogg": {
+        "mime": "audio/ogg",
+        "type": "binary"
+    },
+    "ogv": {
+        "mime": "video/ogg",
+        "type": "binary"
+    },
+    "otf": {
+        "mime": "font/otf",
+        "type": "binary"
+    },
+    "php": {
+        "mime": "application/php",
+        "type": "text"
+    },    
+    "png": {
+        "mime": "image/png",
+        "type": "binary"
+    },
+    "svg": {
+        "mime": "image/svg+xml",
+        "type": "text"
+    },
+    "ttf": {
+        "mime": "font/ttf",
+        "type": "binary"
+    },
+    "wasm": {
+        "mime": "application/wasm",
+        "type": "binary"
+    },
+    "wav": {
+        "mime": "audio/wav",
+        "type": "binary"
+    },
+    "webm": {
+        "mime": "video/webm",
+        "type": "binary"
+    },
+    "webp": {
+        "mime": "image/webp",
+        "type": "binary"
+    },
+    "woff": {
+        "mime": "font/woff",
+        "type": "binary"
+    },
+    "woff2": {
+        "mime": "font/woff2",
+        "type": "binary"
+    },
+    "xml": {
+        "mime": "text/xml",
+        "type": "text"
+    }
+}

@@ -1,0 +1,61 @@
+"id";"userA";"userB"
+"id";"follower";"following"
+"id";"userA";"userB"
+"id";"likedmsg";"user"
+"1";"35";"1"
+"2";"35";"1"
+"id";"message";"type";"url";"width";"height";"size";"length"
+"id";"author";"postdate";"content";"medialist";"deleted";"shared";"replyto";"likes";"tags"
+"1";"1";"2018-01-12 13:32:37";"&iexcl;Hola mundo! 🙀";NULL;"0";NULL;NULL;"0";NULL
+"2";"0";"2018-01-15 09:07:33";"Hay que arreglar &eacute;sta p&aacute;gina 🍆🍆";NULL;"0";NULL;NULL;"0";NULL
+"3";"0";"2018-01-15 09:09:51";"sdgsdgsdgsdgsdg";NULL;"0";NULL;NULL;"0";NULL
+"4";"1";"2018-01-15 09:13:05";"Mensaje";NULL;"0";NULL;NULL;"0";NULL
+"5";"1";"2018-01-15 09:15:32";"Heyyyy ⛹🏼";NULL;"0";NULL;NULL;"0";NULL
+"6";"1";"2018-01-15 09:15:35";"hdfhdf";NULL;"0";NULL;NULL;"0";NULL
+"7";"1";"2018-01-15 09:20:44";"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget bibendum velit, malesuada auctor nisi. Fusce sem ante, tempor nec justo eget, tincidunt hendrerit dolor. Praesent pellentesque quis nisl id scelerisque. Sed finibus justo varius dignissim facilisis. Aenean suscipit mattis urna eu rhoncus. Nulla ut odio diam. Morbi condimentum, felis gravida consectetur pellentesque, lacus enim rutrum velit, quis ultrices enim augue ut metus. Vivamus non felis sit amet nunc blandit finibus.";NULL;"0";NULL;NULL;"0";NULL
+"8";"1";"2018-01-15 09:31:26";"sdgsdgsdg";NULL;"0";NULL;NULL;"0";NULL
+"9";"1";"2018-01-15 09:31:57";"hkghkghk";NULL;"0";NULL;NULL;"0";NULL
+"10";"1";"2018-01-15 09:35:59";"dsgsdgdsg";NULL;"0";NULL;NULL;"0";NULL
+"11";"1";"2018-01-15 09:37:42";"Prueba asfasfas";NULL;"0";NULL;NULL;"0";NULL
+"12";"1";"2018-01-15 09:38:09";"&iexcl;Tomaaaaaaaa!🤘";NULL;"0";NULL;NULL;"0";NULL
+"13";"1";"2018-01-15 09:39:05";"sdsdgdg 🏄🏻";NULL;"0";NULL;NULL;"0";NULL
+"14";"1";"2018-01-15 09:39:48";"dfghdfhdfh";NULL;"0";NULL;NULL;"0";NULL
+"15";"1";"2018-01-15 09:40:50";"sgsdgsd";NULL;"0";NULL;NULL;"0";NULL
+"16";"1";"2018-01-15 09:41:47";"Devuelve una cadena formateada seg&uacute;n el formato dado usando el par&aacute;metro de tipo integer timestamp dado o el momento actual si no se da una marca de tiempo. En otras palabras, timestamp es opcional y por defecto es el valor de time(). 👾";NULL;"0";NULL;NULL;"0";NULL
+"17";"1";"2018-01-15 09:42:07";"Hola.
+
+&Eacute;sto es un mensaje de prueba de la l&iacute;nea de tiempo.";NULL;"0";NULL;NULL;"0";NULL
+"18";"1";"2018-01-15 10:21:46";"Hola #mundo ! Estrenando las #etiquetas";NULL;"0";NULL;NULL;"0";NULL
+"19";"1";"2018-01-15 10:23:22";"Hola. Esto es una nueva #etiquetaaaaa";NULL;"0";NULL;NULL;"0";NULL
+"20";"1";"2018-01-15 10:23:58";"Hola #mundo ! Estrenando las #etiquetas";NULL;"0";NULL;NULL;"0";NULL
+"21";"1";"2018-01-15 10:33:53";"Hola #mundo ! Estrenando las #etiquetas";NULL;"0";NULL;NULL;"0";NULL
+"22";"1";"2018-01-15 10:34:06";"Hola #mundo ! Estrenando las #etiquetas y probando el contador";NULL;"0";NULL;NULL;"0";NULL
+"23";"1";"2018-01-15 10:37:31";"Buenos d&iacute;as #mundo. Esto es otra prueba de #etiquetas. Si el sistema funciona correctamente, el contador de #etiquetas deber&iacute;a de incrementarse una sola vez.";NULL;"0";NULL;NULL;"0";NULL
+"24";"1";"2018-01-15 10:39:56";"Buenos d&iacute;as #mundo. Esto es otra prueba de #etiquetas. Si el sistema funciona correctamente, el contador de #etiquetas deber&iacute;a de incrementarse una sola vez.";NULL;"0";NULL;NULL;"0";NULL
+"25";"1";"2018-01-15 10:40:36";"Buenos d&iacute;as #mundo. Esto es otra prueba de #etiquetas. Si el sistema funciona correctamente, el contador de #etiquetas deber&iacute;a de incrementarse una sola vez.";NULL;"0";NULL;NULL;"0";NULL
+"26";"1";"2018-01-15 11:58:36";"&iexcl;Qu&eacute; pasa gente! Ya podemos meter nuevas etiquetas como, por ejemplo, #pruebaetiqueta";NULL;"0";NULL;NULL;"0";NULL
+"27";"1";"2018-01-15 12:11:25";"Hola #gente 👋";NULL;"0";NULL;NULL;"0";NULL
+"28";"1";"2018-01-15 12:30:14";"Menci&oacute;n incondicional a @usuario";NULL;"0";NULL;NULL;"0";NULL
+"29";"1";"2018-01-15 12:33:41";"asdfsaf@gmail.com";NULL;"0";NULL;NULL;"1213444800";NULL
+"30";"1";"2018-01-15 12:46:31";"Buenas tardes #mundo";NULL;"0";NULL;NULL;"100358111";NULL
+"31";"1";"2018-01-15 12:46:55";"Hola #mundo";NULL;"0";NULL;NULL;"1145001";NULL
+"32";"1";"2018-01-15 12:48:00";"Que pasa #mundo";NULL;"0";NULL;NULL;"133577";NULL
+"33";"1";"2018-01-15 12:48:48";"Hola #pe&ntilde;a";NULL;"0";NULL;NULL;"2519";NULL
+"34";"1";"2018-01-15 12:49:02";"Hola #pidger";NULL;"0";NULL;NULL;"135";NULL
+"35";"1";"2018-01-15 12:50:50";"Qu&eacute; pasa #pidger";NULL;"0";NULL;NULL;"2";NULL
+"36";"1";"2018-01-16 11:04:07";"Mandando un mensaje desde mi Tablet 😳";NULL;"0";NULL;NULL;"0";NULL
+"id";"message";"tag"
+"1";"35";"5"
+"id";"message";"user";"reason"
+"id";"userid";"session_key";"login_date";"login_expire";"browser_agent";"client_ip"
+"0";"1";"s7fc01ac8de8726da5df07169ba74518f0aa6b1910130aca8b";"2018-01-12 08:47:15";"2018-02-11 08:47:15";"Unknown";"0.1.2.3"
+"0";"1";"s3e01e527c03124e9a3551d71486a8e738f937571348c8af42";"2018-01-16 11:01:54";"2018-02-15 11:01:54";"Unknown";"0.1.2.3"
+"0";"1";"s56ecc46bfeb7d69682a7a8d74b2f32151da060514259413d9";"2018-01-16 11:02:46";"2018-02-15 11:02:46";"Unknown";"0.1.2.3"
+"id";"name";"mentions"
+"1";"mundo";"8"
+"2";"etiquetas";"5"
+"3";"pruebaetiqueta";"1"
+"4";"gente";"1"
+"5";"pidger";"2"
+"id";"nick";"name";"surname";"password";"birthdate";"gender";"adress";"phone";"nationality";"mail";"eula";"news";"cookies";"privacy";"avatar";"active";"banned";"reason";"expire";"deleted";"type"
+"1";"john90";"John";"Doe";"a79716c4db59509ac4cdba0b77ac2d81";"1990-01-08";"H";"Una direcci&oacute;n";"+3466655544";"Espa&ntilde;a";"asfas@asfsaf.com";"1";"0";"1";"1";NULL;"0";"0";NULL;NULL;"0";"0"

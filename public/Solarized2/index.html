@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="3nigmatico">
+	<title>Solarized2 CSS Demo</title>
+	<link rel="stylesheet" type="text/css" href="solarized2.css"/>
+	<link rel="stylesheet" type="text/css" href="solarized-hmenu.css"/>
+	<link rel="stylesheet" type="text/css" href="solarized-radios.css"/>
+	<link rel="stylesheet" type="text/css" href="page.css"/>
+</head>
+<body>
+	<div id="container">
+		<header><h1>Solarized DEMO</h1>
+			<nav>
+				<ul>
+					<li><a href="javascript:void(0)">First</a></li>
+					<li><a href="javascript:void(0)">Second</a></li>
+					<li><a href="javascript:void(0)">Drop1</a>
+						<ul>
+							<li><a href="javascript:void(0)">First</a></li>
+							<li><a href="javascript:void(0)">Second</a></li>
+							<li><a href="javascript:void(0)">Third</a></li>
+							<li><a href="javascript:void(0)">Drop1-2</a>
+								<ul class="left">
+									<li><a href="javascript:void(0)">First</a></li>
+									<li><a href="javascript:void(0)">Second</a></li>
+									<li><a href="javascript:void(0)">Third</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="javascript:void(0)">Fourth</a></li>
+					<li><a href="javascript:void(0)">Fifth</a></li>
+					<li><a href="javascript:void(0)">Drop2</a>
+						<ul>
+							<li><a href="javascript:void(0)">First</a></li>
+							<li><a href="javascript:void(0)">Drop2-2</a>
+								<ul class="left">
+									<li><a href="javascript:void(0)">First</a></li>
+									<li><a href="javascript:void(0)">Second</a></li>
+									<li><a href="javascript:void(0)">Third</a></li>
+								</ul>
+							</li>
+							<li><a href="javascript:void(0)">Second</a></li>
+							<li><a href="javascript:void(0)">Third</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<section id="intro">
+			<div class="presentation">
+				<h1 class="presentation">WELCOME TO THE FUTURE</h1>
+			</div>
+			<div class="prese2">
+				<h3>Make your websites look techy with this solarized css! Now with custom checkboxes, radios, and CSS menus!</h3>
+				<a href="https://github.com/Senjihakku/solarized2-css" class="nu"><div id="button">
+					<h2>See on GitHub</h2>
+				</div></a>
+			</div>
+
+			<img src="img/cut_chart.PNG">
+		</section>
+		<section id="description">
+			<h2>What is Solarized</h2>
+			<p>Solarized is a color palette designed for use with terminal and GUI applications, originaly created by <a href="http://ethanschoonover.com/solarized" target="_blank" nofollow>Ethan Schoonover</a>. However, this solarized CSS has been adapted to look good with websites. This CSS includes classes for common HTML tags (up to version 5), including tables, inputs, etc, as well as some extra classes to quickly style your divs.</p>
+			<p>Some extra CSS documents are included for special controls, and CSS menus (up to 3 levels). This means that you can also have awesome controls for your techy web applications! Don't you believe me? Here, have a sample!</p>
+			<fieldset>
+				<legend>Techy form</legend>
+				<div><label>Your name: </label><input type="text" placeholder="John Doe"></div>
+				<div><input type="radio" name="r1"><label> I love this CSS!</label><input type="radio" name="r1"><label> I don't like this CSS</label><input type="radio" name="r1"><label> I might like this CSS!</label></div>
+				<div><input type="checkbox" checked><label>This is a checkbox</label></div>
+				<div><input type="checkbox"><label>This is yet <strong>another</strong> checkbox!</label></div>
+				<input type="button" value="Button">
+			</fieldset>
+			<p>It's very easy to use these elements. All you need is to include solarized2.css and solarized-radios.css, and you are ready to go! Make sure you have a folder named 'img' with a file called 'checks.png' inside with the graphics for the buttons.</p>
+			<h3>Easy CSS menus!</h3>
+			<p>The CSS template includes files for horizontal and vertical menus. These menus are made out of pure CSS, no javascript required! All you need to do to add one of these awesome menus to your solarized website, is to include solarized-hmenu.css (horizontal) or solarized-vmenu.css (vertical), and then create a nav with a unorganized (ul) list with links (a) inside.</p>
+			<p>Each li element can contain another ul (after the a link) for a dropdown submenu. It's that easy! See an example:</p>
+			<div class="demonav">
+			<nav>
+				<ul>
+					<li><a href="eins.html">Element 1!</a></li>
+					<li><a href="zwei.html">Element 2!</a></li>
+					<li><a href="javascript:void(0)">Dropdown</a>
+						<ul>
+							<li><a href="javascript:void(0)">Sub1</a></li>
+							<li><a href="javascript:void(0)">Sub2 - drop right</a>
+								<ul class="right">
+									<li><a href="javascript:void(0)">Another</a></li>
+									<li><a href="javascript:void(0)">Drop</a></li>
+								</ul>
+							</li>
+							<li><a href="javascript:void(0)">Sub3 - drop left</a>
+								<ul class="left">
+									<li><a href="javascript:void(0)">Another</a></li>
+									<li><a href="javascript:void(0)">Drop</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="drei.html">Element 3!</a></li>
+				</ul>
+			</nav>
+		</div>
+			<xmp>
+<nav>
+	<ul>
+		<li><a href="eins.html">Element 1!</a></li>
+		<li><a href="zwei.html">Element 2!</a></li>
+		<li><a href="javascript:void(0)">Dropdown</a>
+			<ul>
+				<li><a href="javascript:void(0)">Sub1</a></li>
+				<li><a href="javascript:void(0)">Sub2 - drop right</a>
+					<ul class="right">
+						<li><a href="javascript:void(0)">Another</a></li>
+						<li><a href="javascript:void(0)">Drop</a></li>
+					</ul>
+				</li>
+				<li><a href="javascript:void(0)">Sub3 - drop left</a>
+					<ul class="left">
+						<li><a href="javascript:void(0)">Another</a></li>
+						<li><a href="javascript:void(0)">Drop</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="drei.html">Element 3!</a></li>
+	</ul>
+</nav>
+			</xmp>
+		<p>Level 3 dropdowns (ul) have left and right classes to manually align them to the left or the right depending on their position of the screen.</p>
+		<h3>Quick format classes</h3>
+		<p>Solarize your divs and texts really quick with the premade solarize classes! Classes for texts start with solarize-tone, while classes for divs start with solarize. Take a look at the available classes:</p>
+		<strong>For divs</strong>
+		<ul>
+			<li>solarize</li>
+			<li>solarize-yellow</li>
+			<li>solarize-orange</li>
+			<li>solarize-red</li>
+			<li>solarize-magenta</li>
+			<li>solarize-violet</li>
+			<li>solarize-blue</li>
+			<li>solarize-cyan</li>
+			<li>solarize-green</li>
+			<li>solarize-dark-base1</li>
+			<li>solarize-dark-base2</li>
+			<li>solarize-light-base1</li>
+			<li>solarize-light-base2</li>
+		</ul>
+		<strong>For text</strong>
+		<ul>
+			<li>solarize-tone-base1</li>
+			<li>solarize-tone-base2</li>
+			<li>solarize-tone-base3</li>
+			<li>solarize-tone-base4</li>
+			<li>solarize-tone-yellow</li>
+			<li>solarize-tone-orange</li>
+			<li>solarize-tone-red</li>
+			<li>solarize-tone-magenta</li>
+			<li>solarize-tone-violet</li>
+			<li>solarize-tone-blue</li>
+			<li>solarize-tone-cyan</li>
+			<li>solarize-tone-green</li>
+		</ul>
+		<p>You can also use the color chart above as a reference to know what color uses each class.</p>
+		<div class="solarize"><span class="solarize-tone-red">Sample</span> <span class="solarize-tone-cyan">text</span></div>
+		<xmp>
+<div class="solarize"><span class="solarize-tone-red">Sample</span> <span class="solarize-tone-cyan">text</span></div>
+		</xmp>
+		<h3>Open Source, elegant and techy fonts!</h3>
+		<p>This CSS template uses <a href="https://fonts.google.com/specimen/Jura" target="_blank">Jura</a> and <a href="https://fonts.google.com/specimen/Ubuntu+Condensed" target="_blank">Ubuntu Condensed</a> for a more techy look and feel! Both are included with the CSS, but if you want to save some request to your server, dont forget to use Google's CDN.</p>
+		<h3>How much work can I save with this CSS?</h3>
+		<p>The CSS I specifically coded for this page has only 72 lines. The rest of the work is pure HTML. So you can imagine how much work you can save by using this CSS!</p>
+		<h1>Made by 3nigmatico</h1>
+		<p>This template is currently a work in progress. You can download the project at the <a href="https://github.com/Senjihakku/solarized2-css" target="_blank">solarized2-css GitHub page</a>.</p>
+		</section>
+	</div>
+</body>
+</html>

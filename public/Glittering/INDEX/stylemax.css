@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Orbitron', 'Arial', sans-serif;
+	overflow: hidden;
+}
+
+div.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 250;
+}
+
+div.container a {
+	color: rgba(255,255,255,0.2);
+	font-size: 24pt;
+	text-decoration: none;
+	transition: 1s linear;
+
+}
+
+div.links {
+	position: relative;
+	top: 60%;
+	margin-top: -25px;
+	background-color: rgba(0,0,0,1);
+}
+
+div.container a:hover {
+	color: rgba(255,255,255,0.6);
+	transition: 1s linear;
+}
+
+span.logoby {
+	display: block;
+	font-size: 50px;
+	position: relative;
+	top: 50%;
+	margin-top: -25px;
+	color: rgba(255,255,255,.2);
+	text-shadow: 0 0 5px white;
+	transition: color 1s ease-in-out;
+}
+
+span.logoby:hover {
+	color: rgba(255,255,255,1);
+	transition: 1s ease-in-out;
+	cursor: none;
+}
+
+header, nav {
+	width: 100%;
+	height: 25px;
+	position: absolute;
+	bottom: 0;
+	z-index: 200;
+	background-color: black;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav a {
+	color: lightgray;
+	text-decoration: none;
+}
+
+nav ul li {
+	display: block;
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+nav ul li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+iframe {
+	visibility: hidden;
+	z-index: -999;
+}

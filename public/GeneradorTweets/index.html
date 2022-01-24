@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Trump Tweet Generator</title>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="estilo.css">
+        <script>
+        function tarea(){
+            document.getElementById("tweetcont").innerHTML = document.getElementById("contenido").value;
+        }
+        </script>
+    </head>
+    <body>
+        <div class="tweetcontainer">
+                <div class="tweet">
+                        <div class="left-panel">
+                            <img src="img/trump.jpg">
+                        </div>
+                        <div class="right-panel">
+                            <strong>Donald J. Trump</strong>
+                            <span class="verificacion"><img src="img/verificado.png" class="verificacion"></span>
+                            <span class="tag">@realDonaldTrump · 15 dic.</span>
+                            <p id="tweetcont">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma</p>
+                        </div>
+                        <div class="bottom-panel">
+                            <span class="responses">
+                                <img src="img/responder.png">
+                            </span><span class="value">16K</span>
+                            <span class="retweets">
+                                <img src="img/retweet.png">
+                            </span><span class="value">14.3K</span>
+                            <span class="likes">
+                                <img src="img/like.png">
+                            </span><span class="value">16K</span>
+                        </div>
+                    </div>
+        </div>
+        <label>Contenido:</label><br>
+        <textarea id="contenido" onchange="tarea();"></textarea><br>
+        <button onclick="tarea();">Introducir</button><br>
+        <span id="charcount">0/140</span>
+    </body>
+    <script>
+        document.getElementById("contenido").onkeypress = function(){
+            if(document.getElementById("contenido").value.length >= 140)
+                return false;
+            document.getElementById("charcount").innerHTML = (document.getElementById("contenido").value.length+1) + "/140"
+            tarea();
+        }
+    </script>
+</html>

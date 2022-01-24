@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'fippsregular';
+    src: url('../font/fipps-regular-webfont.woff2') format('woff2'),
+         url('../font/fipps-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	background-image: url("../static/background.gif");
+	background-color: #1b252f;
+	color: #E0E3F1;
+}
+
+header {
+	background-color: rgba(0,0,0,0.10);
+	padding: 20px;
+	border-radius: 20px 20px 20px 20px;
+	
+}
+
+header.menu {
+	padding: 2px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+@keyframes menua_animator {
+    0%   {position:relative; top: 0;}
+    25%  {position:relative; top: -10px;}
+    50%  {position:relative; top: 10px;}
+    100% {position:relative; top: 0;}
+}
+
+@keyframes face_animator {
+    0%   {background-image: url("../img/face/open.png"), url("../img/face/basehead.png"); top: 0px; left: -25px; transition: linear 0.01s;}
+	25%   {top: -25px; left: 0px;}
+	50%   {top: 0px; left: 25px;}
+	75%   {top: -25px; left: 0px;}
+    80%  {background-image: url("../img/face/open.png"), url("../img/face/basehead.png");  transition: linear 0.01s;}
+    90%  {background-image: url("../img/face/close.png"), url("../img/face/basehead.png");  transition: linear 0.01s;}
+    100% {background-image: url("../img/face/open.png"), url("../img/face/basehead.png");  top: 0px; left: -25px; transition: linear 0.01s;}
+}
+
+@keyframes hardware_animator {
+	0% {background-image: url("../img/face/hardware_green.png");}
+	50% {background-image: url("../img/face/hardware.png");}
+	100% {background-image: url("../img/face/hardware_green.png");}
+}
+
+div.face {
+	position: relative;
+	width: 450px;
+	height: 450px;
+	background-repeat: no-repeat;
+	background-image: url("../img/face/open.png"), url("../img/face/basehead.png");
+	animation-name: face_animator;
+    animation-duration: 10s;
+	animation-iteration-count: infinite;
+	 transition: linear 4s;
+}
+
+/*div.face:hover {
+	width: 450px;
+	height: 450px;
+	animation: none;
+	background-repeat: no-repeat;
+	background-image: url("../img/face/basehead.png");
+	 transition: linear 4s;
+}*/
+
+div.hardware {
+		width: 800px;
+		height: 600px;
+		background-size: 800px 600px;
+		background-repeat: no-repeat;
+		background-image: url("../img/face/hardware.png");
+	animation-name: hardware_animator;
+    animation-duration: 10s;
+	animation-iteration-count: infinite;
+	 transition: linear 4s;
+}
+
+div.menua {
+	font-family: fippsregular;
+	color: #F49000;
+	background-color: rgba(0,0,0,0.40);
+	padding: 5px;
+	width: 150px;
+	height: 35px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	margin-left: 5px;
+    animation-name: menua_animator;
+    animation-duration: 4s;
+	animation-iteration-count: infinite;
+	cursor:default;
+}
+
+div.menua:hover {
+	background-color: rgba(255,255,255,0.50);
+	transition: linear 2s;
+}

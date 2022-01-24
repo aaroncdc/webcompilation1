@@ -1,0 +1,4 @@
+grid 1
+line 0 0 500 500
+line 800 0 0 800
+hollow 0 0 15 15

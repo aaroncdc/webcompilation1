@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>2D parametric functions</title>
+	<link rel="stylesheet" type="text/css" href="solarized2.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="glittering.js"></script>
+</head>
+<body>
+	<span class="logoby">█▐▐▓▒░ 3nigma</span>
+	<div class="inputs solarize">
+		<div class="handle">Expressions</div>
+		<label>Eval:</label><br>
+		<label>Y: </label><input type="text" id="yexpression"><br>
+		<label>X: </label><input type="text" id="xexpression"><br>
+		<input type="button" value="Evaluate" id="bEv" style="margin-left: 15px; margin-top: 5px;">
+	</div>
+	<div class="inputs speed solarize">
+		<div class="handle">Time</div>
+		<label>Amplitude:</label><br>
+		<input type="range" min=".1" max="10" step=".1" value="1.0" id="vSpeed"><label id="ival" style="position: relative; top: -.4em;left: .2em;">1</label></br>
+
+		<label>Length:</label><br>
+		<input type="range" min=".1" max="10.0" step=".1" value="1.0" id="vLength"><label id="leval" style="position: relative; top: -.4em;left: .2em;">1.0</label></br>
+
+		<label>Offset:</label><br>
+		<input type="range" min="-1000" max="1000" step="1" value="1" id="vOffset"><label id="ival2" style="position: relative; top: -.4em;left: .2em;">1</label>
+		
+	</div>
+	<canvas id="canvas" width="300" height="300" style="margin: 0; position: absolute; top: 0; left: 0; z-index: -1;">NO CANVAS</canvas>
+</body>
+</html>

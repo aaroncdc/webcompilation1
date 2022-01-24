@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Create your own 2D Platform game!</title>
+<style type="text/css">
+<!--
+body,td,th {
+	color: #00FF00;
+}
+body {
+	background-color: #000000;
+}
+-->
+</style></head>
+
+<body>
+<table width="830" border="0" cellpadding="0" cellspacing="0">
+  <!--DWLayoutTable-->
+  <tr>
+    <td width="830" height="6405" valign="top"><h2>Platform game basics </h2>
+      <p>IMPORTANT: Download source code and materials <a href="http://javacooperation.gmxhome.de/SourceCodes/PlatformGameBasics/PlatformGameBasics.zip">here</a> for this tutorial</p>
+      <p align="justify">Since I started to implement <a href="http://javacooperation.gmxhome.de/Applets/Games/JrioGame/JrioEng.html">J-Rio </a> one year ago, I thought about writing a tutorial chapter about the  basics of platform games, but until today I never had the time to do  it. But as many mails I got in the last year included questions about  techniques of J-rio and platform games in general, I think that such a  chapter could be very usefull to some of you. Also as I won't give the  sourcecode of J-rio away, people that asked me for the sourcecode have  with this chapter the chance to take a look behind the scenes of my  J-rio implementation because the example applet we will implement in  this chapter is some kind of a lite version of J-rio. Well, ok, I hope  that I can help you a little bit with this chapter and before we start  you should take one more look at the chapters about the <a href="http://javacooperation.gmxhome.de/LeveleditorEng.html">level editor </a> and about <a href="http://javacooperation.gmxhome.de/ScrollingEng.html">scrolling </a> because I'll use the techniques I introduced in those chapters in our  platform game but I won't talk about them in detail anymore. You should  also <a href="http://javacooperation.gmxhome.de/SourceCodes/PlatformGameBasics/PlatformGameBasics.zip">download the sourcecode </a> of the example applet now and work the code through while you read this  tutorial. This chapter won't give you the details to every line of code  but I'll focus on three major problems. First, we'll take a closer look  at the <a href="http://javacooperation.gmxhome.de/PlatformGameBasicsEng.html#PlatformGameKlassendesign">class design </a> I have chosen to implement the game, second, we'll talk about the methods and attributes of the <a href="http://javacooperation.gmxhome.de/PlatformGameBasicsEng.html#PlatformGamePlayerObjekt">player class </a> where I'll focus on things that are related to the movement of the player and last but not least we'll talk about <a href="http://javacooperation.gmxhome.de/PlatformGameBasicsEng.html#PlatformGameLevelObjekt">the structure and function of the class level </a>. </p>
+      <h3><a name="PlatformGameKlassendesign" id="PlatformGameKlassendesign">The class design of our platform game </a></h3>
+      <p align="justify">The  more complex a game (or any other program) gets, the more important  becomes a good class design to allow the programmer to add new  functions to the game easily. In our case (or in my case when I  implemented J-rio) we want to have the possiblity to add new enemies  and level elements to our already released game without any major  changes of the code and it should also be easy to write new levels for  the game. I think that I managed those problems pretty well with the  J-rio class design and that's why I'll use it in our case too, even  though there might be simpler but maybe not so powerful solutions (this  does not mean that I found the only correct solution and there might  not be better ones than mine!). For example it is really easy to add  new levels to J-rio, just take a look at the <a href="http://javacooperation.gmxhome.de/Downloads/J-RioLevelEditor.zip">J-rio level editor </a>. <br />
+        If you downloaded the sourcecode of this chapter and extracted the  *.zip - file you'll find the following classes (Note: what follows now  is just an overview, many details will follow later): </p>
+      <h4>The class <em>Main </em></h4>
+      <p align="justify">First of all the Main class implements the applet itself, which means the <strong>init() </strong>, <strong>start() </strong>, <strong>stop() </strong>, <strong>destroy() </strong> and <strong>paint(Graphics g) </strong> - methods and includes the main game thread within the method run() of the interface <strong>Runnable </strong>.  It also holds methods to handle player events (keyDown...) and two  attributes: an instance of the class player and one instance of a child  class of the class level (in our case only the class LevelOne). In our <strong>run() </strong> - loop we manage the complete game which means to call methods to draw  player and level, to scroll the level and the player if necessary, to  test for collisions between player and level elements and so on. Please  note that the class main does not implement one of those methods on its  own but calls methods in the classes Player and Level. </p>
+      <h4>The class <em>Player </em></h4>
+      <p align="justify">This  class implements behaviour and attributes of the player object. This  means it holds information about the position of the player in the  game, stores the player images used to animate the player and is also  responsible to control the movement of the player (which is explained  in detail later). </p>
+      <h4>The class <em>LevelElement </em></h4>
+      <p align="justify">A game like <strong>J-rio </strong> consists of many different kinds of level elements that have different  attributes, behaviour and cause different interactions with the player.  There are for example those &quot;questionmark stones&quot; that have at least  two different states, which are &quot;hit&quot; and &quot;not yet hit&quot;, moving  platforms and the most simple level element, the ground element, that  has no special behaviour at all. And for this chapter we will  concentrate on this very simple element implemented in the class <strong>Ground </strong>.  But despite those differences between the different kinds of level  elements they have quite a bit of common behaviour, which is  implemented in the class <strong>LevelElement </strong>, which is the  basic class for every level element in our Platform game. This basic  bahaviour contains the position of the level element, a unique integer  identifier, a boolean variable &quot;inSight&quot; that is used for scrolling and  painting the level element (see chapter about scrolling for details),  as well as an Image - object to store the level element GIF. Every  level element in J-rio extends the class LevelElement and the internal  data structure of the class <strong>Level </strong> contains only instances of the child classes of the class <strong>LevelElement </strong> that are identified by their unique integer id. </p>
+      <h4>The class <em>Ground </em></h4>
+      <p align="justify">This  class represents exactly such a child class of the class LevelElement.  But this kind of LevelElement has no special behaviour so that it only  calls the super constructor in its own constructor. </p>
+      <h4>The class <em>Level </em></h4>
+      <p align="justify">The abstract class <strong>Level </strong> is maybe the most important and complex class of the game. The class  holds a method to translate the string representation of the level  (given in the class LevelOne) to the internal data representation of  the level which is a two dimensional array of LevelElement - instances.  It also holds methods used for collision control between player and  level elements. What the internal representation looks like, how it is  created and how the collision control works will be explained later in  this chapter. </p>
+      <h4>The class <em>LevelOne </em></h4>
+      <p align="justify">This  class contains level specific definitions especially the definition of  the level itself consisting of 25 strings representing 25 rows of the  level. The color of the background can also be manipulated using the  initializeColorArray() method of the class LevelOne. </p>
+      <h4>Die Klasse <em>C_Jump </em></h4>
+      <p align="justify">To  make changes of the game size, levelelement size... easier all  constants used in the game are written down in a special class, in our  case in the class C_jump. </p>
+      <h4>How the classes work together </h4>
+      <p align="justify">As I already said the class <strong>Main </strong> holds an instance of the <strong>Player </strong> - object, as well as an instance of a child class of the class <strong>Level </strong>. <strong>Main </strong> is also responsible for managing the complete game. The class <strong>Player </strong> is used to store player specific attributes and to move, draw, animate and scroll the player correctly, whereas the class <strong>Level </strong> is used to hold the internal representation of the level, to draw and  to scroll the level as well as to test for collisions between the  player and level elements. A level is implemented by a child class of  the class <strong>Level </strong>, in our case by the class <strong>LevelOne </strong>.  When we construct a instance of the class LevelOne, the string  representation of the level is translated to the two dimensional array  of <strong>LevelElement </strong> - objects, stored in the parent class of LevelOne <strong>Level </strong>. Every level element is a child class of <strong>LevelElement </strong>, in our platform game there is only the class <strong>Ground </strong>. <br />
+        I hope that I could make clear now, why I designed the classes like I  did, if there are any problems left you maybe should take a look at the <a href="http://javacooperation.gmxhome.de/LeveleditorEng.html">level editor chapter </a>, where I used quite the same design but maybe a little bit simpler. Now, we'll take a closer look at the classes <strong>Player </strong> and <strong>Level </strong>. </p>
+      <h3><a name="PlatformGamePlayerObjekt" id="PlatformGamePlayerObjekt">Details of the class <em>Player </em></a></h3>
+      <p align="justify">The  animation and movement control of the player is very important for our  game. But to control the movement of the player in a platform game is  not that simple as it might seem, because we have to take care that our  player has to stop walking or jumping if he hits a wall, he has to fall  down of any platform if the end is reached, has to stop falling if he  lands on a platform and so on. That's why I'm going to explain my  solotion to those problems within the next part of this chapter. <br />
+        First of all you have to recognize that in this platform game the  movement of the player is controlled in a indirect way using boolean  flags. In our player class / object the keyboard input of the human  player and results of the collisions control in the class Level only  set boolean values of four movement flags and do not cause any movement  of the player on their own (which means they don't change the x of y  positions). The run() - method of the class Main calls a method named  playerMove() of our Player class which now moves the player according  to the values of the movement flags. Let's take a closer look on those  flags: </p>
+      <h4>The four movement flags and their control </h4>
+      <p align="justify">Our player object as four, partly independent movement flags: </p>
+      <ul>
+        <li>
+          <p align="justify"><strong>walking_left </strong>:  shows if the player should move to the left and is mainly controlled by  the keyboard input of the human player, so its value is set to true if  the left arrow key is pressed and is set to false if the key is  released. But the flag is also influenced by the collision control of  the level, becaues our player has to stop movement if it hits a wall on  its left side. </p>
+        </li>
+        <li>
+          <p align="justify"><strong>walking_right </strong>: same as the walking_left flag, only in the other direction (no surprise I think ;-) </p>
+        </li>
+        <li>
+          <p align="justify"><strong>jumping </strong>:  this flag indicates that our player has to jump. But things are a  little bit more complicated here because on the one hand, this movement  is controlled by two controllers: the human player pressing or  releasing the 'a' - key and the collision control of the level class  (for example if the player bangs his head against a wall). On the other  hand the player may not be able to jump one more time if he's already  jumping or he may not jump if he's falling and so on, details on those  problems and their solution follow later. </p>
+        </li>
+        <li>
+          <p align="justify"><strong>falling </strong>:  This flag is only controlled by the collision control of the level  class (set to true if the player leaves a platform...). Here we need  some tricks too to stop the player right on the surface of a new  platform (or at least to correct mistakes made here) and so on, details  again later. </p>
+        </li>
+      </ul>
+      <p align="justify">The <strong>walking_left </strong> and <strong>walking_right </strong> as well as the <strong>falling </strong> and <strong>jumping </strong> flags may not be true at the same time. But falling / jumping and  walking_left / walking_right are completely independent from each other  so they can be true together because our player must have the chance to  jump to the left or to fall to the right side. The movement flags are  controlled from two different sides: the keyboard input of the human  player and the collision control of the level class, we'll discuss  later this chapter. But now we'll take a look at the set - methods for  our boolean flags and the playerMove() - method that does the movement  work for us. </p>
+      <p align="justify">The set - methods for the walking_left and walking_right values are really simple, here is the code. </p>
+      <ul>
+        <em> // Method sets the value of the walking_left flag <br />
+          public void playerWalkLeft(boolean value) <br />
+          { <br />
+        </em>
+        <ul>
+          <em> walking_left = value; </em>
+        </ul>
+        <em>} <br />
+        <br />
+          // Method sets the value of the walking_right flag <br />
+          public void playerWalkRight(boolean value) <br />
+          { <br />
+        </em>
+        <ul>
+          <em> walking_right = value; </em>
+        </ul>
+        <em>} <br />
+        </em>
+      </ul>
+      <p align="justify">In case of the flag <strong>jumping </strong> it's getting a little bit more complicated because we have to take care  of some more things, when we set the value. First of all the player can  only jump, if he's not already falling which means that the value of <strong>falling </strong> is false and if the player is not already jumping so the value of another flag <strong>jump_lock </strong> has to be false too. One more thing is, that we will use a counter <strong>jump_counter </strong> to contoll the length of the jump. This counter must be reset to 0 when  the player starts a new jump which means that the values of the flags  are: <strong>jumping </strong> = false, <strong>jump_lock </strong> = false and value is true. You'll find some details on the jump_counter later this chapter. Here comes the code: </p>
+      <ul>
+        <em> // Method to set the value of the jumping flag <br />
+          public void playerJump(boolean value) <br />
+          { <br />
+        </em>
+        <ul>
+          <em> // reset jump_counter if player starts a new jump <br />
+            if(!jumping &amp;&amp; !jump_lock &amp;&amp; value) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> jump_counter = 0; </em>
+          </ul>
+          <em>} <br />
+          <br />
+            // the player can only jump, if he's not already falling <br />
+            if(falling) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> jumping = false; </em>
+          </ul>
+          <em>} <br />
+            else <br />
+            { <br />
+          </em>
+          <ul>
+            <em> jumping = value; </em>
+          </ul>
+          <em>} <br />
+          </em>
+        </ul>
+        <em>} <br />
+        </em>
+      </ul>
+      <p align="justify">The last one of the four flags is the <strong>falling </strong> flag. With this flag, it is important that if falling is set to false  which means the player lands on a platform, we have to end a jump  (jump_lock and jumping must be set to false). One more thing is, that  in some cases the player does not stop moving right on the surface of  the platform but a little bit more down so that it seem the player  would be standing right in the platform. So we have to correct errors  that happen here. We also have to take care that the player can't jump  and fall at the same time but this is guarantied somewhere else (in the  method playerMove()). </p>
+      <ul>
+        <em> // Method to set the value of the falling flag <br />
+          public void playerFall(boolean value) <br />
+          { <br />
+        </em>
+        <ul>
+          <em> // we want to stop falling <br />
+            if(!value) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> // reset the jump flags to make new jump possible <br />
+              if(jump_lock) <br />
+              { <br />
+            </em>
+            <ul>
+              <em> jump_lock = false; <br />
+                jumping = false; </em>
+            </ul>
+            <em>} <br />
+            <br />
+              // we have to correct the player position so that the player always, <br />
+              // stands on the surface of a platform. In this case, the lower <br />
+              // position of the player modulo the Height of a level element <br />
+              // is equal 0. If this is not the case, the player is moved up <br />
+              // until this is the case and the player stands on the surface! <br />
+              while(y_pos_down%C_Jump.level_element_height != 0) <br />
+              { <br />
+            </em>
+            <ul>
+              <em> y_pos_down --; <br />
+                y_pos_up--; </em>
+            </ul>
+            <em>} <br />
+            </em>
+          </ul>
+          <em>} <br />
+          <br />
+            // set value of falling <br />
+            falling = value; <br />
+          </em>
+        </ul>
+        <em>} <br />
+        </em>
+      </ul>
+      <h4>Movement and animation of the player </h4>
+      <p align="justify">Now  as we know about the four movement flags and how they are set we will  take a look at the method that actually moves the player according to  the values of the flags. This happens in the playerMove() - method but  before we take a look at the sourcecode of the method I have to say  something about two variables I'll use in the method: </p>
+      <ul>
+        <li>
+          <p align="justify"><strong>step_counter </strong> and <strong>picture_counter </strong>:  Those variables are only necessary to animate the player. When the  player made 15 &quot;steps&quot; we want to change the player image and this  means that we have to change the value of picture_counter that tells  the paint() - method which image of the player should be painted to the  screen. </p>
+        </li>
+        <li>
+          <p align="justify"><strong>jump_counter </strong>:  This counter is used to determine how far the player can jump and when  a jump of the player stops. If the jump_counter value reaches a certain  maximal value, the value of the jumping flag is set to false. </p>
+        </li>
+      </ul>
+      <ul>
+        <em> // This method moves the player according to the values of the movement flags <br />
+          public void playerMove() <br />
+          { <br />
+        </em>
+        <ul>
+          <em> // walking_left flag is true <br />
+            if(walking_left) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> // Change the x - position of the player <br />
+              x_pos_left -= walk_x_speed; <br />
+              x_pos_right -= walk_x_speed; <br />
+              <br />
+              // change the game position (important for scrolling) <br />
+              game_x_position -= walk_x_speed; <br />
+              <br />
+              // change the player image after 15 steps <br />
+              if (step_counter%15 == 0) <br />
+              { <br />
+            </em>
+            <ul>
+              <em> // change value of the picture_counter <br />
+                picture_counter ++; <br />
+                <br />
+                // reset counter if value is 2 (there are only 2 pictures) <br />
+                if(picture_counter == 2) <br />
+                { <br />
+              </em>
+              <ul>
+                <em> picture_counter = 0; </em>
+              </ul>
+              <em>} <br />
+              <br />
+                // reset step counter <br />
+                step_counter = 1; <br />
+              </em>
+            </ul>
+            <em>} <br />
+              // else increase value of the step counter <br />
+              else <br />
+              { <br />
+            </em>
+            <ul>
+              <em> step_counter ++; </em>
+            </ul>
+            <em>} <br />
+            <br />
+              // tell if player looks left (only important for animation) <br />
+              look_left = true; <br />
+            </em>
+          </ul>
+          <em>} <br />
+            // walking_right flag is true <br />
+            else if(walking_right) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> ... All the same as for walking_left only to the other side... </em>
+          </ul>
+          <em>} <br />
+          <br />
+            // Value of jumping is true <br />
+            if(jumping) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> // This variable exists to avoid that the player can jump one more time <br />
+              // if he's already jumping <br />
+              jump_lock = true; <br />
+              <br />
+              // Make sure that the value of falling is false becaues the collision <br />
+              // control sets the falling value to true even if the player is jumping <br />
+              falling = false; <br />
+              <br />
+              // jump_counter still smaller than 30 <br />
+              if(jump_counter &lt; 30) <br />
+              { <br />
+            </em>
+            <ul>
+              <em> // player jumps by the speed of 2 <br />
+                y_pos_up -= jump_y_speed; <br />
+                y_pos_down -= jump_y_speed; <br />
+                jump_counter ++; </em>
+            </ul>
+            <em>} <br />
+              // if the value of the jump_counter is smaller than 30 but greater than <br />
+              // 40 jump by the speed of 1 <br />
+              else if (jump_counter &lt; 40) <br />
+              { <br />
+            </em>
+            <ul>
+              <em> y_pos_up -= jump_y_speed2; <br />
+                y_pos_down -= jump_y_speed2; <br />
+                jump_counter++; </em>
+            </ul>
+            <em>} <br />
+              // if the value of the jump_counter is greater than 40, player can't <br />
+              // jump further so set the value of jumping to false <br />
+              else <br />
+              { <br />
+            </em>
+            <ul>
+              <em> jumping = false; </em>
+            </ul>
+            <em>} <br />
+            </em>
+          </ul>
+          <em>} <br />
+          <br />
+            // if player is falling move playe down <br />
+            if(falling) <br />
+            { <br />
+          </em>
+          <ul>
+            <em> y_pos_up += fall_y_speed; <br />
+              y_pos_down += fall_y_speed; </em>
+          </ul>
+          <em>} <br />
+          </em>
+        </ul>
+        <em>} <br />
+        </em>
+      </ul>
+      <p align="justify">I  hope that I could show you now the most important and new parts of the  class player, scrolling and painting of the player should be no problem  anymore. But I think you should really take a look at the sourcecode of  the class to understand everything because this class is not so simple.  Well, ok, lets start with a even more complex class, the class <strong>Level </strong></p>
+      <h3><a name="PlatformGameLevelObjekt" id="PlatformGameLevelObjekt">Structure and function of the class <em>Level </em></a></h3>
+      <p align="justify">In this last part of the tutorial we'll talk about the class <strong>Level </strong> and the related classes <strong>LevelOne </strong> and <strong>LevelElement </strong>.  First of all we'll take a look at the &quot;definition language&quot; of a  platform game level and we'll see how this definition language is  translated to the internal data representation of the level. Those are  mainly ideas I already introduced in the chapter about the level  editor, if you have any problems please read this chapter first.  Afterwards I'll show you some details of the collision control between  level elements and the player. I won't talk about things like scrolling  and painting because those things should be clear now (at least I hope  so). </p>
+      <h4>Definition language and internal data structure of a level </h4>
+      <p align="justify">One  major goal of our class design was to allow ourselfs to write new  levels for our game easily. That's the reason why we define our levels  with a certain &quot;definition language&quot; which can easily be used by humans  and then we translate this level definition into a new data structure  which can be used by the computer. In our design language a level  consists of 25 rows represented as 25 strings. The length of those  strings is variable but they all need to be of the same length. Every  level element we want to use in our level is implemented as a child  class of LevelElement, has a unique character identifier and at every  position where this character appears in our level definition strings  this level element will be generated in the internal data structure of  the level. The parser in the class Level (method initializeLevel()) has  to be capable to translate those string definitions into the internal  data structure of our level. This internal data structure consists of a  two dimensional array with null pointers at places where no level  element exists in our level and instances of child classes of the class  LevelElement where a level element exists in the level. This idea is  explained in more detail in the chapter aboue the <a href="http://javacooperation.gmxhome.de/Leveleditor.html">level editor </a>. Ok, before we get to the collision control here comes the sourcecode: </p>
+      <p align="justify">The level definition can be found in the class <strong>LevelOne </strong>.  This class is used to define all the level specific things like the  background color, the level itself and so on where the real  functionality of the level is implemented in the inherited methods from  the parent class Level. Here comes a level in the level definition  language: </p>
+      /** <br />
+Legend: <br />
+&quot;:&quot;: represents a position in the level where no element should be generated <br />
+&quot;g&quot;: represents a position in the level where a ground element should be generated <br />
+*/ <br />
+<br />
+// String definition of the level <br />
+// rows 1 - 10 are missing, because they don't contain any important data <br />
+public static final String row11 = &quot;::::::::::::::::::::::::::::::::::::::::g::&quot;; <br />
+public static final String row12 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row13 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row14 = &quot;::::::::::::::::::::::::::::::::::::g::::::&quot;; <br />
+public static final String row15 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row16 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row17 = &quot;::::::::::::gggg::::::::::::::::g::::::::::&quot;; <br />
+public static final String row18 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row19 = &quot;:::::::::::::::::::::::gggg::::::::::::::::&quot;; <br />
+public static final String row20 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row21 = &quot;::::::gggg:::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row22 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row23 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row24 = &quot;:::::::::::::::::::::::::::::::::::::::::::&quot;; <br />
+public static final String row25 = &quot;ggggggggggggggggggggggggggggggggggggggggggg&quot;; <br />
+<p align="justify">As you can see here it is really simple to define new levels (see the <a href="http://javacooperation.gmxhome.de/Downloads/J-RioLevelEditor.zip">level editor version </a> of J-rio too). But how is this simple definition translated to the  internal computer readable data representation? This is implemented in  the method initializeLevel(String [] definitions) of the class Level.  This method parses the level definition strings and generates a two  dimensional array of level elements out of them. This array is mainly  used for the collision control. Afterwards all pointers to  levelelements are also stored in a one dimensional array to make  scrolling and painting of the level more efficient. </p>
+// Method to parse the level definition strings and generate 2D and 1D arrays. <br />
+public void initializeLevel(String [] definitions) <br />
+{ <br />
+<ul>
+  // Initialize collision array <br />
+  collision_array = new LevelElement [C_Jump.number_of_level_lines] [definitions[0].length()]; <br />
+  <br />
+  // Initialize some level information: level length and left and right border <br />
+  level_length = definitions[0].length() * C_Jump.level_element_width; <br />
+  left_level_border = 0; <br />
+  right_level_border = C_Jump.applet_width; <br />
+  <br />
+  // Counter to count the number of level elements in the level, important <br />
+  // for the initialisation of the 1D array <br />
+  int elements_counter = 0; <br />
+  <br />
+  // For all level definition strings do: <br />
+  for(int i=0; i&lt;definitions.length; i++) <br />
+  { <br />
+  <ul>
+    // generate a char array of the current level definition string <br />
+    char [] definition_line = definitions[i].toCharArray(); <br />
+    <br />
+    // for all elements in the char array do: <br />
+    for(int j=0; j&lt;definition_line.length; j++) <br />
+    { <br />
+    <ul>
+      // Translate the chars to level elements <br />
+      if(definition_line[j] == ':') <br />
+      { <br />
+      <ul>
+        collision_array[i][j] = null;
+      </ul>
+      } <br />
+      // Generate a Ground element <br />
+      else if(definition_line[j] == 'g') <br />
+      { <br />
+      <ul>
+        // Important: position in the string definition (i, j) <br />
+        // is translated to concrete pixel position <br />
+        Ground element = new Ground(j*C_Jump.level_element_width, <br />
+        <ul>
+          i*C_Jump.level_element_height, ground, parent, C_Jump.ground_id);
+        </ul>
+        <br />
+        // Store element in collision array <br />
+        collision_array[i][j] = element; <br />
+        <br />
+        // increase element counter <br />
+        elements_counter ++;
+      </ul>
+      } <br />
+    </ul>
+    } <br />
+  </ul>
+  } <br />
+  <br />
+  // Copy levelelement pointers to 1D array <br />
+  // Code's missing because nothing special happens
+</ul>
+}
+<h4>Test for collisions between player and level elements </h4>
+<p align="justify">Let's get to the last and maybe most comprehensive  topic of this chapter. All the things we did and talked about before  are important for the collision control of the game because the  collision control has quite a lot to to with the movement control and  the internal data representation of the game. <br />
+  Well, the idea is  the following: The only thing we have to do, when we want to test if  the player collides with any level element is to determine the position  of the player in the 2D level array, which means the players row and  column and test if there is a level element (which means not a null  pointer) or if there ist no element (= null pointer). If we find a  levelelement at the players position, we have to do something with the  movement flags of the player, in our case we have to set them to false.  As you might remember, we have four movement flags so we have to test  for four possible collisions: collison up (important for jumping),  collision down (important for falling), collision left and collision  right. Therefore I implemented some methods. The method <strong>testForPlayerCollisions() </strong> is used to manage the collision control and to decide what to do when a  certain collision between a level element and the player occurs. There  are also four specialized methods ( <strong>testCollisionUp </strong>, <strong>-Down </strong>,  ...) that are used to make a lookup within the 2D array if a level  element exists at a given player position or not. Ok, here comes the  sourcecode of the method testForPlayerCollisions(Player player) as well  as for the method testCollisionDown (as a example for one of those  methods that test for the existence of a level element at a given  player position and return this element to the calling method). </p>
+// method tests for collisions between player and level elements <br />
+public void testForPlayerCollisions(Player player) <br />
+{ <br />
+<ul>
+  // get some player specific position values <br />
+  int player_game_pos = player.getGameXPosition(); <br />
+  int player_down_pos = player.getYPosDown(); <br />
+  int player_up_pos = player.getYPosUp(); <br />
+  <br />
+  int player_left = player_game_pos - (C_Jump.player_image_width/2); <br />
+  int player_right = player_game_pos + (C_Jump.player_image_width/2); <br />
+  <br />
+  // Test for collisions down <br />
+  LevelElement down_element = testCollisionDown(player_game_pos, player_down_pos); <br />
+  <br />
+  // If there is a element below the player, the player does not fall <br />
+  if(down_element != null) <br />
+  { <br />
+  <ul>
+    player.playerFall(false);
+  </ul>
+  } <br />
+  // if null is returned the player is falling down <br />
+  else <br />
+  { <br />
+  <ul>
+    player.playerFall(true);
+  </ul>
+  } <br />
+  <br />
+  // Test for collisions up <br />
+  LevelElement upper_element = testCollisionUp(player_game_pos, player_up_pos); <br />
+  <br />
+  // stop jumping if there is a element <br />
+  if(upper_element != null) <br />
+  { <br />
+  <ul>
+    player.playerJump(false);
+  </ul>
+  } <br />
+  <br />
+  // Test for collisions at the left side of the player <br />
+  LevelElement left_element = testCollisionLeft(player_left, player_down_pos); <br />
+  <br />
+  // stop movement of the player to the left <br />
+  if(left_element != null) <br />
+  { <br />
+  <ul>
+    player.playerWalkLeft(false);
+  </ul>
+  } <br />
+  <br />
+  // Test for collisions at the right side of the player <br />
+  LevelElement right_element = testCollisionRight(player_right, player_down_pos); <br />
+  <br />
+  // stop movement of the player to the right <br />
+  if(right_element != null) <br />
+  { <br />
+  <ul>
+    player.playerWalkRight(false);
+  </ul>
+  } <br />
+</ul>
+} <br />
+<br />
+// Method tests for a given player position if there is a level element, this element is returned to the calling class <br />
+public LevelElement testCollisionDown(int game_pos, int player_y_down) <br />
+{ <br />
+<ul>
+  // Translate player position into array position (row and col) <br />
+  int col = game_pos / C_Jump.level_element_width; <br />
+  int row = player_y_down / C_Jump.level_element_height; <br />
+  <br />
+  try <br />
+  { <br />
+  <ul>
+    // Return element at this position or null <br />
+    if(collision_array[row][col] != null) <br />
+    { <br />
+    <ul>
+      return collision_array[row][col];
+    </ul>
+    } <br />
+    else <br />
+    { <br />
+    <ul>
+      return null;
+    </ul>
+    } <br />
+  </ul>
+  } <br />
+  catch (ArrayIndexOutOfBoundsException ex) <br />
+  { <br />
+  <ul>
+    return null;
+  </ul>
+  } <br />
+</ul>
+} <br />
+<h3>That's it! </h3>
+<p>Now whit those knowledges, you can start making your own Java games. Have fun!!</p>
+<p>See the game finnished - click <a href="http://javacooperation.gmxhome.de/Applets/PlatformGameBasics/PlatformGameBasics.html">here</a> </p></td>
+  </tr>
+  <tr>
+    <td height="2242">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+ in multiplication by $80, which is the length of a demo table)
+	ld   a, [sDemoId]	; A = Demo Index
+;--
+; Calculate the offset for the current demo input table.
+; This ends up doing:
+; DE = sDemoId * $80
+.loop:
+	sla  a 						; DE << 1
+	rl   d 						; (basically << 1 for the carry)
+	dec  e
+	jr   nz, .loop
+	ld   e, a					
+;--
+	; Get the ptr to the current input demo table
+	ld   hl, Demo_InputTable	
+	add  hl, de					; HL = Inputs for the current demo
+	
+	; Index the current table entry (already multiplied by 2)
+	ld   a, [sDemoInputOffset] 
+	add  l
+	
+	; Handle the joypad key status
+	ld   l, a					; L = Current Entry
+	ldi  a, [hl] 				; Ge

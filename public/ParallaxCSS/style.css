@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body, html {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Arial', cursive;
+}
+
+div.parallax {
+	background: url('img/1.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: #fefefe;
+	box-sizing: border-box;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+div.parallax2 {
+	background-image: url('img/2.jpg');
+}
+
+div.parallax3 {
+	background-image: url('img/3.jpg');
+}
+
+.caption {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top: 50%;
+	opacity: .9;
+}
+
+.caption > div.captionbox {
+	background: #3f4c6b;
+	background: -moz-linear-gradient(top, #3f4c6b 0%, #3f4c6b 100%);
+	background: -webkit-linear-gradient(top, #3f4c6b 0%,#3f4c6b 100%);
+	background: linear-gradient(to bottom, #3f4c6b 0%,#3f4c6b 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 );
+	width: 600px;
+	height: 75px;
+	font-size: 3em;
+	font-weight: bolder;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: .3em;
+}
+
+#content-1{
+	font-family: 'Open Sans', sans-serif;
+	text-align: justify;
+	padding-left: 40px;
+	padding-right: 40px;
+	min-height: 170px;
+}
+
+#content-1 > h1 {
+	text-align: center;
+}
+
+#content-1 > p {
+	font-size: 1.2em;
+}

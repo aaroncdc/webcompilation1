@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Gallery test</title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<content id="container">
+			<div id="scrollhide">
+				<div id="scrollleft">
+					<i class="fa fa-chevron-left fa-5x"></i>
+				</div>
+				<div id="scrollright">
+					<i class="fa fa-chevron-right fa-5x"></i>
+				</div>
+					<div class="frame">
+						<a href="imagenes/originals/image35.jpg" data-lightbox="example-set" data-title="Bunny Rabbit">
+							<img src="imagenes/thumb/th01.gif"/>
+							<div class="image-info-frame">
+								<div class="image-info">
+									<h1>Bunny Rabbit</h1>
+								</div>
+							</div>
+						</a>
+					</div>
+
+			</div>
+		</content>
+		<aside>
+			<span class="fa-stack fa-lg" id="dropdown">
+			  <i class="fa fa-square-o fa-stack-2x"></i>
+			  <i class="fa fa-reorder fa-stack-1x"></i>
+			  <nav>
+			  	<ul>
+			  		<a href="#"><li><p>Home</p></li></a>
+			  		<a href="#"><li><p>My Portfolio</p></li></a>
+			  		<a href="#"><li><p>Blog</p></li></a>
+			  		<a href="#"><li><p>About me</p></li></a>
+			  		<a href="#"><li><p>Contact</p></li></a>
+			  	</ul>
+			  </nav>
+			</span>
+			<hr/>
+
+			<a href="#"><span class="fa-stack fa-lg">
+			  <i class="fa fa-square fa-stack-2x"></i>
+			  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+			</span></a>
+			<a href="#"><span class="fa-stack fa-lg">
+			  <i class="fa fa-square fa-stack-2x"></i>
+			  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+			</span></a>
+			<a href="#"><span class="fa-stack fa-lg">
+			  <i class="fa fa-square fa-stack-2x"></i>
+			  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+			</span></a>
+		</aside>
+		<footer>3nigmatico '17</footer>
+	</body>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox-plus-jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#scrollright').mouseover(function(){
+				var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos + 100},'fast');
+			}).click(function(){
+				var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos + 400},'slow');
+			});
+
+			$('#scrollleft').mouseover(function(){
+				var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos - 100},'fast');
+			}).click(function(){
+				var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos - 400},'slow');
+			});
+
+			$('#scrollhide').bind("mousewheel", function(e){
+				if(e.originalEvent.wheelDelta > 0)
+				{
+					var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos - 200},'slow');
+				}else{
+					var lPos = $('#scrollhide').scrollLeft();
+				$('#scrollhide').animate({scrollLeft: lPos + 200},'slow');
+				}
+			})
+		});
+		
+
+		function getPaddedValue(i)
+		{
+			var result = "";
+			if(i < 10 && i > 0)
+				return "0" + String(i);
+			return String(i);
+
+		}
+
+		for(var x = 2; x <= 20; x++)
+		{
+			document.getElementById("scrollhide").innerHTML += "<div class=\"frame\"><a href=\"imagenes/originals/image"+getPaddedValue(x-1)+".jpg\" data-lightbox=\"example-set\" data-title=\"Sample Image " +getPaddedValue(x)+"\"><img src=\"imagenes/thumb/th"+getPaddedValue(x)+".gif\"/><div class=\"image-info-frame\"><div class=\"image-info\"><h1>Sample Image " + getPaddedValue(x) + "</h1></div></div></a></div>";
+		}
+	</script>
+</html>

@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Khula');
+
+#container {
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#scrollhide {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 105%;
+	height: 100%;
+}
+
+/*#scrollhide.horizont {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	overflow-x: auto;
+	overflow-y: hidden;
+	width: 100%;
+	height: 105%;
+}*/
+
+div.frame {
+	box-sizing: border-box;
+	border: 1px solid black;
+	display: block;
+	width: 32%;
+	height: 32%;
+	flex-grow: 2;
+	flex-basis: 32%;
+	overflow:hidden;
+	position: relative;
+	top: 0;
+	left: 0;
+	opacity: .5;
+	transition: opacity .5s ease-out;
+}
+
+div.frame:hover {
+	opacity: 1;
+	transition: opacity .5s ease-in;
+}
+
+div.frame img {
+	width: 100%;
+	height: 100%;
+}
+
+div.frame div.image-info-frame {
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+div.image-info-frame div.image-info {
+	box-sizing: border-box;
+	width: 100%;
+	height: 0%;
+	position: absolute;
+	bottom: -10%;
+	left: 0;
+	transform: rotateX(-90deg);
+	transition: .6s ease-out;
+	border-radius: 15px 15px 0 0;
+	background-color: #93b3f2;
+	/*background: #f85032;
+	background: -moz-linear-gradient(top, #f85032 0%, #f16f5c 50%, #f6290c 51%, #f02f17 71%, #e73827 100%);
+	background: -webkit-linear-gradient(top, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%);
+	background: linear-gradient(to bottom, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827',GradientType=0 );
+	*/opacity: .9;
+	align-content: center;
+	justify-content: center;
+}
+
+div.image-info-frame:hover div.image-info {
+	bottom: 0px;
+	height: 18%;
+	transform: rotateX(0deg);
+	transition: .6s ease-in;
+}
+
+div.image-info h1 {
+	font-family: Arial;
+	font-size: 18pt;
+	color: white;
+	text-shadow: 0px 0px 2px black;
+	text-align: center;
+	position: relative;
+	top: -.3em;
+}
+
+footer {
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	margin-left: 15px;
+	margin-bottom: 5px;
+	font-family: 'Indie Flower', cursive;
+	font-size: 54pt;
+	color: white;
+	text-shadow: 1px 1px 5px black;
+	z-index: 20;
+}
+
+aside {
+	box-sizing: border-box;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 50px;
+	padding-top: 15px;
+	align-content: center;
+	justify-content: center;
+}
+
+aside hr {
+	box-sizing: border-box;
+	width: 32px;
+	background-color: #f0f0f0;
+	border: 1px solid black;
+	float: center;
+	margin-left: 3px;
+}
+
+aside a {
+	text-decoration: none;
+	color: black;
+}
+
+nav {
+	box-sizing: border-box;
+	background-color: black;
+	color: white;
+	background-color: black;
+	font-family: Arial;
+	position: relative;
+	top: -160px;
+	right: 120px;
+	width: 120px;
+	transform: scaleY(0);
+	transition: .5s ease-out;
+}
+
+#dropdown:hover nav {
+	top: -20px;
+	transform: scaleY(1);
+	transition: .5s ease-in;
+}
+
+nav ul {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav ul a {
+	text-decoration: none;
+	color: white;
+	font-family: 'Khula', sans-serif,Arial;
+	text-align: center;
+}
+
+nav ul a li {
+	box-sizing: border-box;
+}
+
+nav ul a li:hover {
+	/*background-color: #f85032;*/
+	background-color: #6490e5;
+}
+
+@media all and (min-width: 1280px) {
+	div.frame {
+		width: 25%;
+		height: 30%;
+		flex-basis: 25%;
+	}
+}
+
+@media all and (max-width: 600px) {
+	div.image-info-frame:hover div.image-info h1 {
+		font-size: 12pt;
+	}
+
+	div.image-info-frame:hover div.image-info {
+		height: 13%;
+	}
+}
+
+@media all and (max-width: 500px) {
+	div.frame {
+		width: 50%;
+		height: 25%;
+		flex-basis: 50%;
+	}
+
+	footer {
+		font-size: 36pt;
+	}
+
+	div.image-info-frame:hover div.image-info {
+		display: none;
+	}
+}
+
+@media all and (min-width: 3000px)
+{
+	footer {
+		font-size: 120pt;
+	}
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation:landscape)
+{
+	div#scrollright, div#scrollleft{
+		display: block;
+		top: 48%;
+		right: 0;
+	}
+
+	div#scrollhide {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: center;
+		overflow-x: auto;
+		overflow-y: hidden;
+		width: 100%;
+		height: 105%;
+	}
+}
+
+#scrollright, #scrollleft {
+	display: none;
+	width: 70px;
+	height: 70px;
+	position: fixed;
+	right: 0;
+	z-index: 100;
+	opacity: .5;
+	transition: .3s linear;
+	margin: 0;
+	padding: 0;
+	
+}
+
+#scrollright:hover, #scrollleft:hover {
+	opacity: 1;
+	transition: .3s linear;
+}
+
+#scrollleft {
+	left: 0;
+}

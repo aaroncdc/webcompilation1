@@ -1,0 +1,81 @@
+body{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 30px;
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+	font-size: 12pt;
+	background-color: #2b2b2b;
+	color: #bdbdbd;
+	min-height: 100%;
+	height: auto;
+}
+
+.page-layout {
+	width: 100%;
+	min-height: 100%;
+	height: auto;
+}
+
+.composer-layout
+{
+	width: 50%;
+	border-right: 2px solid lightblue;
+	min-height: 100%;
+	height: auto;
+}
+
+.composer-form {
+	width: 100%;
+}
+
+.composer-form input[type="text"], .composer-form textarea
+{
+	background-color: #2b2b2b;
+	color: #bdbdbd;
+	border: 1px solid lightblue;
+	font-size: 14pt;
+	padding: 5px;
+	width: 95%;
+}
+
+.composer-form textarea {
+	height: 500px;
+}
+
+.preview
+{
+	width: 100%;
+	height: auto;
+	padding: 5px;
+	min-height: 100%;
+	height: auto;
+}
+
+.entry-list
+{
+	border: 1px solid lightblue;
+}
+
+.entry-list td {
+	padding: 8px;
+}
+
+th {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid lightblue;
+}
+
+a {
+	text-decoration: none;
+	color: lightblue;
+}
+
+img {
+	max-width: 800;
+}

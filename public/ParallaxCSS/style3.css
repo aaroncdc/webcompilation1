@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+html {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Open Sans', cursive;
+	perspective: 1px; /* <- Activa el efecto */
+	transform-style: preserve-3d; /* <- Activa el efecto */
+	overflow-x: hidden;
+}
+
+header {
+	z-index: 100;
+	width: 100%;
+	min-height: 150px;
+	background-color: white;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+div.parallax {
+	background: url('img/1.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 105%;
+	height: 1800px;
+	margin: 0;
+	padding: 0;
+	color: #fefefe;
+	box-sizing: border-box;
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+		overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+div.parallax2 {
+	background-image: url('img/2.jpg');
+}
+
+div.parallax3 {
+	background-image: url('img/3.jpg');
+}
+
+.content {
+	margin: 20px;
+	margin-left: 40px;
+	margin-right: 40px;
+	z-index: 100;
+}
+
+.content > h1 {
+	text-align: center;
+}
+
+.parallax-scroll{
+	position: relative;
+	padding: 25vh 10%;
+	min-height: 100vh;
+	width: 100vw;
+	box-sizing: border-box;
+	transform-style: inherit;
+
+}
+
+.parallax-scroll:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+}
+
+.parallax-scroll, .parallax-scroll:before {
+	background: 50% 50% / cover;  
+}
+
+#contenedor1:before{
+	background-image: url('img/1.jpg');
+	transform: translateZ(-1px) scale(2);
+	z-index: -1;
+}
+
+#contenedor2 {
+	background-image: url('img/2.jpg');
+	transform: translateZ(-0.5px) scale(1);
+	z-index: 0;
+}
+
+#contenedor3:before {
+	background-image: url('img/3.jpg');
+	transform: translateZ(-0.5px) scale(1);
+	z-index: 0;
+}
+
+#contenedor4 {
+	background-image: url('img/1.jpg');
+	transform: translateZ(-0.5px) scale(1);
+	z-index: 0;
+}
+
+#contenedor5:before {
+	background-image: url('img/2.jpg');
+	transform: translateZ(-0.75px) scale(.75);
+	z-index: 0;
+}
+
+
+.contenido {
+	width: 50%;
+	padding: 5%;
+	border-radius: 5px;
+	background: rgba(240,230,220, .7);
+	box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+}
+
+.c2 {
+	transform: translateZ(.25px) scale(.75) translateX(5%) translateY(-100%) rotate(2deg);
+}
+
+.c3 {
+	transform: translateZ(.2px) scale(.75) translateX(25%) translateY(-75%) rotate(-4deg);
+}
+
+.c4 {
+	transform: translateZ(.1px) scale(.75) translateX(75%) translateY(-200%) rotate(-2deg);
+}

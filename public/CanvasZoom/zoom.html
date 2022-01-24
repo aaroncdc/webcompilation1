@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Full canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="margin: 0; position: absolute; top: 0; left: 0; z-index: 100;">NO CANVAS</canvas>
+
+	<img src="bird.png" id="bird" style="display:none;" />
+	<script>
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext('2d');
+		var birdsprite = document.getElementById("bird");
+		var image_ready = false;
+		var viewx = 1280;
+		var viewy = 720;
+		bird.onload = function() {
+			image_ready = true;
+		}
+
+		function draw(){
+			ctx.canvas.width = window.innerWidth;
+			ctx.canvas.height = window.innerHeight;
+			ctx.fillStyle = "black";
+			ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+			if(image_ready)
+			{
+				ctx.save();
+				ctx.drawImage(bird, ctx.canvas.width/2 - (bird.width/8),ctx.canvas.height/2 - (bird.height/8),bird.width/4,bird.height/4);
+				ctx.restore();
+			}
+			
+				
+		}
+
+		window.setInterval(draw, 1);
+	</script>
+</body>
+</html>

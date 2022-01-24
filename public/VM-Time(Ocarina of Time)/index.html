@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>UNIX Time</title>
+</head>
+<body>
+<h2>Time Machine</h2>
+	<form>
+	<table>
+	<tr>
+	<td><label>From: </label></td><td><input type="text" id="dtn"></td>
+	</tr><tr>
+	<td><label>To: </label></td><td><input type="text" placeholder="mm-dd-yyyy hh:mm:ss" id="dtl"></td>
+	</tr><tr>
+	<td><input type="button" value="Calculate: " id="doact"></td><td><input type="text" readonly id="res"></td>
+	</tr><tr>
+	<td><input type="checkbox" name="Stop Time" id="theworld"> Stop Time</td><td></td>
+	</tr>
+	</table>
+	</form><br/><br/>
+	<table>
+	<tr>
+		<td><b>From: </b></td><td><i id="fd1"></i></td>
+	</tr>
+		<tr>
+		<td><b>To: </b></td><td><i id="fd2"></i></td>
+	</tr>
+	</table>
+	<br/>
+	<pre>
+	cd D:\Program Files\Oracle\VirtualBox
+	D:
+	vboxmanage setextradata [VMname] "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled" "1"
+	VBoxManage modifyvm [name] --biossystemtimeoffset <i id="mstx">[miliseconds]</i></pre>
+</body>
+<script>
+//var dn = new Date();
+var dnms = Date.now();
+var zawarudo = document.getElementById("theworld");
+
+window.document.getElementById("dtn").value = getFormattedDate(new Date());
+
+document.getElementById("doact").addEventListener("click", function(){
+	var dtgn = new Date(document.getElementById("dtn").value);
+	//var dtgn  = new Date();
+	var dtg = new Date(document.getElementById("dtl").value);
+	var dtgns = dtgn.getTime();
+	var dtgms = dtg.getTime();
+	var result = dtgms - dtgns;
+	document.getElementById("res").value = result;
+	document.getElementById("mstx").innerHTML = result;
+	window.document.getElementById("fd1").innerHTML = dtgn.toDateString() + " " + dtgn.toTimeString();
+	window.document.getElementById("fd2").innerHTML = dtg.toDateString() + " " + dtg.toTimeString()
+});
+
+setInterval(function(){
+	if(!zawarudo.checked)
+	{
+		dnms = Date.now();
+
+		window.document.getElementById("dtn").value = getFormattedDate(new Date());
+	}
+}, 1000);
+
+function getFormattedDate(date) {
+  var year = date.getFullYear();
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  return month + '-' + day + '-' + year + " " + date.toLocaleTimeString();
+}
+
+</script>
+
+</html>

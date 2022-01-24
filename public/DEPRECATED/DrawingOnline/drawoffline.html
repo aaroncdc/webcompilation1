@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link rel="stylesheet" type="text/css" href="solarized.css"/>-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="drawing.css">
+<title>Testing HTML5 Canvas Drawing</title>
+<!--<script src="jquery-2.2.0.js" type="text/javascript"></script>-->
+<!--<script src="jquery-2.2.0.min.js" type="text/javascript"></script>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/.cydrw.js" type="text/javascript"></script>
+<style>
+#canvas:active {
+	cursor: none;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><h4 style="position: relative; top: -12px;">CyberDraw <small>- v0.20 - CyStack Web Development &copy; 2016 </small></h4></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+	  
+	    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><span class="glyphicon glyphicon-floppy-save"></span> Save Drawing</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-floppy-open"></span> Load Drawing</a></li>
+		   <li><a href="#"><span class="glyphicon glyphicon-cloud-upload"></span> Upload to Gallery</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Change Room</a></li> 
+        </ul>
+      </li>
+	  
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-1" style="padding: 5px;">
+	<center>
+	<div class="btn-group-vertical" id="toolsetbar">
+		<button type="button" class="btn btn-primary active" id="toolPencil"><span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Draws using a regular pencil styled brush."></span> Pencil</button>
+		<!--<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-record" data-toggle="tooltip" title="Draws using a regular brush style"></span> Brush</button>-->
+		<button type="button" class="btn btn-primary" id="toolAirbrush"><span class="glyphicon glyphicon-certificate" data-toggle="tooltip" title="Constantly add strokes to the canvas."></span> Airbrush</button>
+		<button type="button" class="btn btn-primary" id="toolHarmony"><span class="glyphicon glyphicon-road" data-toggle="tooltip" title="Draw a line, and add strokes between it's points."></span> Harmony</button>
+		<button type="button" class="btn btn-primary" id="toolEraser"><span class="glyphicon glyphicon-cloud" data-toggle="tooltip" title="Shortcut for a white brush."></span> Eraser</button>
+		<!--<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-oil" data-toggle="tooltip" title="Fills pixels with a color."></span> Bucket</button>
+		<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-resize-full" data-toggle="tooltip" title="Place a straight line."></span> Line</button>
+		<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-retweet" data-toggle="tooltip" title="Places a square."></span> Square</button>
+		<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-font" data-toggle="tooltip" title="Places a text."></span> Text</button>-->
+	</div></center>
+	
+	</div>
+	<div class="col-md-9" style="padding-top: 5px;">
+	<canvas id="canvas" width="800px" height="480px" style="border:1px solid #000; position: relative; /*width: 100%; height: 100%*/"/>
+	</div>
+	<div class="col-md-2" style="padding: 5px;">
+		<div class="chatbox text" style="padding: 10px; border: 0;">
+		
+		</div>
+		<input type="text" class="text" style="width: 95%; padding-left: 1px; margin-top: 5px;"/>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		<hr/>
+		<center><table border="0">
+		<tr>
+			<td><label for="radslider">Radius: </label></td>
+			<td><input type="range" id="rs" name="radslider" max="50" min="1" value="1"  class="slider"/></td>
+			<td><input type="text" readonly value="1" id="rst" class="text" style="width: 30px"/></td>
+			<td><label for="blurslider">Blur: </label></td>
+			<td><input type="range" id="rb" name="blurslider" max="50" min="0" step="0.1" value="0"  class="slider"/></td>
+			<td><input type="text" class="text" readonly value="0" id="rsb" style="width: 30px"/></td>
+			<td><label for="colorsel">Color: </label></td>
+			<td><input type="color" id="selcolor" class="selcolor"/>
+			<input type="text" class="text" readonly value="#000000" id="hexcol" style="width: 65px"/>
+			</td>
+			<td><label for="opslider">Opacity: </label></td>
+			<td><input type="range" id="opacs" name="opslider" max="1" min="0" step="0.01" value="1"  class="slider"/></td>
+			<td><input type="text" class="text" readonly value="100" id="rso" style="width: 35px"/></td>
+			<td><label for="selmode">Blending: </label></td>
+			<td>
+				<select id="selMode" class="text" name="selmode">
+				<option value="source-over">Normal</option>
+				<option value="lighter">Lighter</option>
+				<option value="darken">Darken</option>
+				<option value="multiply">Multiply</option>
+				<option value="screen">Screen</option>
+				<option value="overlay">Overlay</option>
+				<option value="color-dodge">Color Dodge</option>
+				<option value="color-burn">Color Burn</option>
+				<option value="Hard Light">Hard Light</option>
+				<option value="Soft Light">Soft Light</option>
+				<option value="difference">Difference</option>
+				<option value="exclusion">Exclusion</option>
+				<option value="hue">Hue</option>
+				<option value="saturation">Saturation</option>
+				<option value="color">Color</option>
+				<option value="luminosity">Luminosity</option>
+				<option value="xor">XOR</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="reds">Red: </label></td>
+			<td><input type="range" id="redb" name="reds" max="255" min="0" step="1" value="0"  class="slider"/></td>
+			<td><input type="text" class="text" readonly value="0" id="rv" style="width: 35px"/></td>
+			<td><label for="greens">Green: </label></td>
+			<td><input type="range" id="greenb" name="greens" max="255" min="0" step="1" value="0"  class="slider"/></td>
+			<td><input type="text" class="text" readonly value="0" id="gv" style="width: 35px"/></td>
+			<td><label for="blues">Blue: </label></td>
+			<td><input type="range" id="blueb" name="blues" max="255" min="0" step="1" value="0"  class="slider"/></td>
+			<td><input type="text" class="text" readonly value="0" id="bv" style="width: 35px"/></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><!--<input type="button" id="clearb" value="Clear"/>-->
+			<button type="button" class="btn btn-success btn-md" id="clearb">Clear</button>
+			</td>
+		</tr>
+		</table></center>
+		
+		</div>
+	</div>
+</div>
+</body>
+</html>

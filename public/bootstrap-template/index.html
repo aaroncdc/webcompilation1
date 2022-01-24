@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Compubytes - Plantilla web Responsiva</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="author" content="ACdC">
+        <meta name="description" content="Compubytes - Plantilla web Responsiva">
+        <meta name="keywords" content="">
+        <script src="res/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="res/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="res/fontawesome/css/fontawesome-all.min.css">
+        <script src="res/bootstrap/js/bootstrap.min.js" language="javascript"></script>
+        <link rel="stylesheet" type="text/css" href="temp1.css">
+        <link rel="stylesheet" type="text/css" href="temp1-media.css">
+        <link rel="stylesheet" type="text/css" href="frameLists.css">
+    </head>
+    <body>
+        <div id="main-container">
+
+            <!-- Main header -->
+            <header class="main-header">
+                
+                <div class="container-fluid main-header-container">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4 header-logo-big">
+                            <a href="#"><img src="img/compubytes_logo.png"></a>
+                        </div>
+                        <div class="col-sm-8 col-md-8 col-lg-8 header-nav-main">
+                            <nav class="navbar navbar-default main-nav">
+                                <div class="burger-menu">
+                                    <span class="glyphicon glyphicon-align-justify burger-menu-btn"></span>
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> INICIO</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> NOSOTROS</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> PRODUCTOS</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-flash"></span> SERVICIOS</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-align-left"></span> BLOG</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> CONTACTO</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main page carousel -->
+            <div class="main-body-presentation">
+
+                <div id="main-carousel" class="carousel slide" data-ride="carousel">
+                      <!-- Indicators -->
+                      <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                      </ol>
+
+                      <!-- Slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="img/carousel/1.png" alt="CPUs Intel AMD">
+                            </div>
+                            <div class="item">
+                                <img src="img/carousel/2.png" alt="Infraestructura de red">
+                            </div>
+                            <div class="item">
+                                <img src="img/carousel/3.png" alt="Placa base">
+                            </div>
+                            <div class="item">
+                                <img src="img/carousel/4.png" alt="Soporte técnico">
+                            </div>
+                        </div>
+                          <!-- Left and right controls -->
+                          <a class="left carousel-control" href="#main-carousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Anterior</span>
+                          </a>
+                          <a class="right carousel-control" href="#main-carousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Siguiente</span>
+                          </a>
+            </div>
+
+            <!-- Section Products -->
+            <div class="section-container section-products">
+                <div class="container-fluid main-section">
+                    <h1>Últimos artículos</h1>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-3 featured-image">
+                            <img src="img/products/featured.jpg">
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9">
+                            <h3>MSI VR One Backpack Form Factor PC i7-7820HK 16GB 512GB GTX1070 W10</h3>
+                            <small>SKU# AC04781, Model# VR ONE 7RE-068AU </small><br/><br/>
+                            <p>Ordenador Gaming portatil para Realidad Virtual. Con 2 baterías y 3.6Kg de peso.
+                            Procesador Intel Core i7-7820HK 2.9GHz - 16GB (2x 8GB) DDR4 - 512GB NVMe SSD - Nvidia GeFORCE gtx 1070 GDDR5.
+                            5 USB (1x 3.1, 4x 3.0). Conector HDMI y Mini-DisplayPort. Tarjeta de red inalámbrica 802.11ac. Bluetooth 4.1</p>
+                            <strong>Diseñado para HTC VIVE. Incluye Windows 10 Home</strong><br/>
+                            <div class="product-price">
+                                <span class="product-price-text">3199€</span>
+                                <a href="#" class="btn btn-default btn-big-yellow"> Añadir al carro</a> 
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Otros productos: </h3>
+                    <!-- Product List -->
+                    <!-- Scrolling items -->
+                        <div class="item-list-container">
+                            <div class="item-list-scroll-hide" id="item-list-scroll">
+                                <div class="item-list" id="item-list-1">
+                                    <div class="element">
+                                        <img src="img/products/1.jpg" class="product-gallery-image">
+                                        <strong>PSU 1050W RGBi PLUS</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                         <img src="img/products/2.jpg" class="product-gallery-image">
+                                        <strong>PB Asus ASOG Strike</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/3.jpg" class="product-gallery-image">
+                                        <strong>Intel Extreme Series Core i7</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/4.jpg" class="product-gallery-image">
+                                        <strong>Teclado mecánico msi VIGOR GK-70</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/5.jpg" class="product-gallery-image">
+                                        <strong>Auriculares Gaming</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/1.jpg" class="product-gallery-image">
+                                        <strong>PSU 1050W RGBi PLUS</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                         <img src="img/products/2.jpg" class="product-gallery-image">
+                                        <strong>PB Asus ASOG Strike</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/3.jpg" class="product-gallery-image">
+                                        <strong>Intel Extreme Series Core i7</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/4.jpg" class="product-gallery-image">
+                                        <strong>Teclado mecánico msi VIGOR GK-70</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                    <div class="element">
+                                        <img src="img/products/5.jpg" class="product-gallery-image">
+                                        <strong>Auriculares Gaming</strong>
+                                        <div class="button-center"><a href="#" class="btn btn-default btn-yellow"><span class="glyphicon glyphicon-shopping-cart"></a> <a href="#" class="btn btn-default">Ver Más</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <div class="item-list-scroll-left" id="il-s-l">
+                                <span> << </span>
+                            </div>
+                            <div class="item-list-scroll-right" id="il-s-r">
+                                <span> >> </span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Section services -->
+            <div class="section-container color-break">
+                <div class="container-fluid main-section">
+                    <h1>Nuestros servicios</h1>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="main-section-panel">
+                                <h3>Montaje de PCs</h3>
+                                <div class="panel-img">
+                                    <img src="img/panel1.png">
+                                </div>
+                                
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum est eu velit lobortis posuere. Donec interdum venenatis augue quis efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                <div class="button-center-normal"><a href="#" class="btn btn-default">Ver Más</a></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="main-section-panel">
+                                <h3>Negocios</h3>
+                                <div class="panel-img">
+                                    <img src="img/panel2.png">
+                                </div>
+                                
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum est eu velit lobortis posuere. Donec interdum venenatis augue quis efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                <div class="button-center-normal"><a href="#" class="btn btn-default">Ver Más</a></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="main-section-panel">
+                                <h3>Desarrollo Web</h3>
+                                <div class="panel-img">
+                                    <img src="img/panel3.png">
+                                </div>
+                                
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum est eu velit lobortis posuere. Donec interdum venenatis augue quis efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                <div class="button-center-normal"><a href="#" class="btn btn-default">Ver Más</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Description -->
+            <div class="section-container">
+                <div class="container-fluid main-section main-description">
+                    <h1>Garantía de calidad</h1>
+                    <img src="img/fill-description-1.jpg" class="fill-description-top">
+                    <div class="container">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum est eu velit lobortis posuere. Donec interdum venenatis augue quis efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam massa odio, congue ut mattis blandit, convallis eu dolor. Nullam vel nibh sed libero vulputate tristique. Morbi vel ligula tempus, aliquet eros sed, dignissim ante. Integer elementum blandit velit, et elementum ex condimentum in. Suspendisse feugiat enim neque. Aenean dignissim turpis quis purus accumsan, et suscipit ex rhoncus. Nullam fringilla enim vitae lacus iaculis consectetur. Curabitur suscipit quam turpis, sit amet condimentum orci convallis condimentum. Vestibulum nec dolor eu dolor ultrices tristique vitae at risus. </p>
+                    <p>Nam nec nisi aliquet, aliquam libero non, volutpat lorem. Maecenas eget diam ut dolor varius condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse augue nibh, malesuada quis metus ut, mollis malesuada nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras quis feugiat dui, et accumsan augue. Curabitur feugiat turpis quis ex mattis pulvinar. Vestibulum quis vestibulum mi. Vestibulum fringilla lorem vel nisi egestas, nec tempus lorem pharetra. Aenean ac pellentesque arcu, et egestas mi. Sed mollis ut nibh sed egestas. Cras aliquet erat in tortor suscipit iaculis. Praesent lobortis erat eget aliquam auctor. Integer molestie elit augue, at semper nisi hendrerit vulputate. </p>
+                </div>
+                    <img src="img/fill-description-bottom.jpg" class="fill-description-bottom">
+                </div>
+            </div>
+
+            <!-- Section footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4 footer-section address-section">
+                            <!--<h3>Compubytes</h3>-->
+                            <img src="img/compubytes_logo.png">
+                            <h4>Dirección</h4>
+                            <p><a href="">Avenida de América 63, Madrid</a></p>
+                            <h4>Correo</h4>
+                            <p><a href="mailto:aaaaa@domain.es">support@compubytes.es</a></p>
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:+34916665544">(+34) 91-666-55-44</a></p>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 footer-section legal-section">
+                            <h3>Legal</h3>
+                            <ul>
+                                <li><a href="#">Cookie Policy</a></li>
+                                <li><a href="#">LSSI</a></li>
+                                <li><a href="#">Privacy statement</a></li>
+                                <li><a href="#">Other legal notices</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 footer-section map-section">
+                            <h3>Nuestra Tienda</h3>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2898.247804282431!2d-3.70469718010921!3d40.416708707462185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid!5e1!3m2!1sen!2ses!4v1520254744896" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="container footer-notes">
+                    <a href="#"><h6>Diseño por ACdC</h6></a> Toda la información sobre ésta compañía es ficticia.
+                </div>
+            </footer>
+
+            <!-- Cookies, etc -->
+            <div class="cookie-alert" id="cookie-alert">
+                <h1>¿Te gusta ésta plantilla?</h1>
+                <p>Si quieres una página como ésta para tu tienda o empresa, dame un toque y te la monto.</p>
+                <span><a href="#" class="btn btn-big">Quiero ésta página</a></span>
+                <span><a href="#" class="btn btn-big-yellow" id="cookie-alert-dismiss">¡Entendido!</a></span>
+                <script type="text/javascript">
+                    $("#cookie-alert-dismiss").on('click', function(){
+                        $("#cookie-alert").css('display', 'none');
+                    });
+                </script>
+                <div class="alert-bg"></div>
+            </div>
+
+        </div>
+    </body>
+    <script type="text/javascript" src="js/frameLists.js"></script>
+    </html>

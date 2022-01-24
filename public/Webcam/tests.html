@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WebRTC Media test</title>
+        <style>
+            body {
+                background-color: #3a3a3a;
+                padding: 25px;
+                font-family: 'Arial', sans-serif;
+            }
+            #videosrc {
+                border: 3px solid white;
+                width: 640px;
+                height: 480px;
+                border-radius: 30px 30px 30px 30px;
+            }
+            table {
+                color: #a0a0a0;
+            }
+            
+            video {
+                filter: hue-rotate(0deg);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>WebRTC Media Test</h1>
+        <video autoplay id="videosrc"></video>
+        <table>
+            <tr>
+                <td>Video source: </td>
+                <td>
+                    <select id="sVideoSrc">
+                        <option value="null">--- Select ---</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Audio source: </td>
+                <td>
+                    <select id="sAudioSrc">
+                        <option value="null">--- Select ---</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Camera facing: </td>
+                <td>
+                    <button id="bfacing">Change</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Hue: </td>
+                <td>
+                    <input type="range" min="1" max="360" step="5" value="0" id="hueslide">
+                </td>
+            </tr>
+        </table>
+    </body>
+    <script>
+        /* Global vars */
+        var face = true;
+    
+        /* Initial stream parameters */
+        const params = {
+            video: { facingMode: (face?"user":"environment")},
+            audio: true
+        };
+        
+        /* Check if the browser implements getUserMedia */
+        if (navigator.mediaDevices === undefined) {
+            navigator.mediaDevices = {};
+        }
+        if (navigator.mediaDevices.getUserMedia === undefined) {
+            navigator.mediaDevices.getUserMedia = function(constraints) {
+            
+                /* Some browsers partially implement getUserMedia. Complete it. */
+                var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                
+                /* Throw an error if not implemented at all */
+                if (!getUserMedia) {
+                    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+                }
+                
+                /* Wrap the call to navigator.getUserMedia */
+                return new Promise(function(resolve, reject){
+                    getUserMedia.call(navigator, contraints, resolve, reject);
+                });
+            }
+        }
+        
+        /* Get video player */
+        const video = document.querySelector('#videosrc');
+        /* Get form elements */
+        const videoSelect = document.querySelector('#sVideoSrc');
+        const audioSelect = document.querySelector('#sAudioSrc');
+        const cameraFacing = document.querySelector('#bfacing');
+        const hslide = document.querySelector('#hueslide');
+
+        /* Start streaming (Requests permissions first) and enumerate devices */
+        navigator.mediaDevices.getUserMedia(params).then((stream) => {video.srcObject = stream; video.play()}).then(() => navigator.mediaDevices.enumerateDevices()).then(devices => {
+            /* List all devices.
+            NOTE: device.label can be left blank intentionaly for security reasons. In that case,
+            we will display the device ID instead. Unintuitive, but better than nothing.
+            */
+            devices.forEach(function(device){
+                if(device.kind === "videoinput") {
+                    videoSelect.options[videoSelect.options.length] = new Option((device.label === "")?device.deviceId:device.label, device.deviceId);
+                }else if(device.kind === "audioinput") {
+                    audioSelect.options[audioSelect.options.length] = new Option((device.label === "")?device.deviceId:device.label, device.deviceId);
+                }
+            });
+        });
+        
+        /* Events */
+        
+        /* Change video source */
+        videoSelect.onchange = function(){
+            let did = this.options[this.selectedIndex].value;
+            if(window.stream) {
+                window.stream.getTracks().forEach(function(track) {
+                    track.stop();
+                });
+            }
+            
+            const t_params = {
+                audio: ((audioSelect.value === "null" || !audioSelect.value)?true:{exact: audioSelect.value}),
+                video: {
+                    deviceId: {exact: this.value},
+                    facingMode: "user"
+                }
+            };
+            
+            navigator.mediaDevices.getUserMedia(t_params).then((stream) => {video.srcObject = stream});
+        }
+        
+        /* Change audio source */
+        audioSelect.onchange = function(){
+            let did = this.options[this.selectedIndex].value;
+            if(window.stream) {
+                window.stream.getTracks().forEach(function(track) {
+                    track.stop();
+                });
+            }
+            
+            const t_params = {
+                audio: {
+                    deviceId: {exact: this.value}
+                },
+                video: ((videoSelect.value === "null" || !videoSelect.value)?{ facingMode: (face?"user":"environment") }:{exact: videoSelect.value})
+            };
+            
+            navigator.mediaDevices.getUserMedia(t_params).then((stream) => {video.srcObject = stream});
+        }
+        
+        /* Change camera facing (Phones/Tablets) */
+        cameraFacing.onclick = function() {
+            face = !face;
+            const t_params = {
+                audio: ((audioSelect.value === "null" || !audioSelect.value)?true:{exact: audioSelect.value}),
+                video: { facingMode: (face?"user":"environment")}
+            };
+            console.log("Face set to ", (face?"user":"environment"));
+            navigator.mediaDevices.getUserMedia(t_params).then((stream) => {video.srcObject = stream});
+        }
+        
+        /* Change video color hue using CSS */
+        hslide.onchange = function(){
+            video.style.filter = "hue-rotate(" + this.value + "deg)";
+        }
+    </script>
+</html>

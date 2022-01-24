@@ -1,0 +1,67 @@
+[h=1]Header 1[/h]
+[h=2]Header 2[/h]
+[h=3]Header 3[/h]
+[h=4]Header 4[/h]
+[h=5]Header 5[/h]
+[h=6]Header 6[/h]
+[hr]
+[b]bolded text[/b]
+[br]
+[i]italicized text[/i]
+[u]underlined text[/u]
+[s]strikethrough text[/s]
+[url]https://en.wikipedia.org[/url]
+[url=http://step.pgc.edu/]ECAT[/url]
+[img]https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Go-home-2.svg/100px-Go-home-2.svg.png[/img]
+[img=house]https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Go-home-2.svg/100px-Go-home-2.svg.png[/img]
+[quote=author]quoted text[/quote]
+[code=c]
+int main(int args, char **argv){
+	printf("Hello, World!");
+	return 0;
+}
+[/code]
+[code=pic16]
+movlw 0x20 ;initialize pointer
+movwf FSR ;to RAM
+NEXT clrf INDF ;clear INDF register
+incf FSR ;inc pointer
+btfss FSR,4 ;all done?
+goto NEXT ;NO, clear next
+CONTINUE
+ : ;YES, continue
+BCF STATUS, RP0 ;
+CLRF PORTA ; Initialize PORTA by
+; clearing output
+; data latches
+BSF STATUS, RP0 ; Select Bank 1
+MOVLW 0x0F ; Value used to
+; initialize data
+; direction
+MOVWF TRISA ; Set RA<3:0> as inputs
+; RA4 as output
+; TRISA<7:5> are always
+; read as ’0’.
+[/code]
+[size=45]Large Text[/size]
+[color=#FF0000]Red Text[/color]
+[img]url_img[/img]
+[ulist]
+[li]Entry 1[/li]
+[li]Entry 2[/li]
+[/ulist]
+[olist]
+[li]Entry 1[/li]
+[li]Entry 2[/li]
+[/olist]
+[table]
+  [tr]
+  [td]table 1[/td]
+  [td]table 2[/td]
+  [/tr]
+  [tr]
+  [td]table 3[/td]
+  [td]table 4[/td]
+  [/tr]
+[/table]
+[yt]8-hB4KZ_RcQ[/yt]

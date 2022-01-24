@@ -1,0 +1,80 @@
+/* Media roll for tablets */
+
+@media all and (max-width: 1057px)
+{
+	.main-nav ul li a {
+		font-size: 9pt;
+	}
+}
+
+@media all and (max-width: 953px)
+{
+	.main-nav ul li span {
+		display: none;
+	}
+}
+
+/* Media roll for mobile*/
+
+@media all and (max-width: 767px)
+{
+	div.header-logo-big a img {
+		position: relative;
+		left: 50%;
+		margin-left: -175px;
+	}
+
+	nav.main-nav {
+		margin-top: 0 !important;
+	}
+
+	.burger-menu-btn {
+		display: block;
+	}
+
+	.burger-menu ul {
+		display: none;
+	}
+
+	.burger-menu:hover ul {
+		display: block;
+	}
+
+	.burger-menu ul li span {
+		display: inline !important;
+	}
+
+	.main-section-panel {
+		padding: 15px;
+	}
+
+	div.product {
+		width: 100% !important;
+		margin: 0;
+		padding: 0;
+	}
+
+	.legal-section ul {
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+	}
+}
+
+
+
+@media all and (max-width: 377px)
+{
+	div.header-logo-big a img {
+		position: relative;
+		left: 0;
+		margin-left: 0;
+	}
+
+	div.product {
+		width: 100% !important;
+		margin: 0;
+		padding: 0;
+	}
+}

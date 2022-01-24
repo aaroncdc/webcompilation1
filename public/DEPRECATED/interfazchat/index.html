@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Layout chat flexible</title>
+<style>
+#container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-flow: column;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	vertical-align: stretch;
+	background-color: #000;
+}
+
+#head {
+	display: flex;
+	width: 100%;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 70px;
+	align-self: flex-start;
+	background-color: #C30;
+}
+
+#bcontainer {
+	display: flex;
+	width: 100%;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 300px;
+	align-self: flex-start;
+	background-color: #69C;
+	
+	flex-flow: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	vertical-align: stretch;
+}
+
+#foot {
+	display: flex;
+	width: 100%;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 75px;
+	align-self: flex-start;
+	background-color: #96F;	
+}
+
+#b1 {
+	display: flex;
+	width: 150px;
+	height: 100%;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 150px;
+	align-self: flex-start;
+	background-color: #999;		
+}
+
+#b2 {
+	display: flex;
+	width: 150px;
+	height: 100%;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 100%;
+	align-self: flex-start;
+	background-color: #630;	
+}
+</style>
+<script src="jquery-3.2.1.min.js"></script>
+<script>$(window).on('load', function(){
+	var b1s = false;
+	$("#b1").click(function(){
+		if(!b1s)
+			$("#b1").animate({"margin-left": '-=140px'});
+		else
+			$("#b1").animate({"margin-left": '+=140px'});
+
+		b1s = !b1s;
+	});
+});</script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="head"></div>
+        <div id="bcontainer">
+            <div id="b1"></div>
+            <div id="b2">Hello</div>
+        </div>
+        <div id="foot"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/*
+    NIGHT.CSS
+    Created on : 16-feb-2016, 11:34:56
+    Author     : Aaron CdC
+*/
+
+body {
+	font-family: Arial;
+	color: #fff;
+	background-color: #0f0f24;
+}
+
+b, h1, h2, h3, h4, h5, h6, th {
+	color: #eeff75;
+}
+
+td, th {
+    background-color: #202046;
+    padding: 2px;
+}
+
+th {
+	background-color: #181835;
+}
+
+td.sl:hover {
+	background-color: #3f3f8d;
+}
+
+a {
+	color: #8585c7;
+}
+
+input, select, textarea, button {
+    border: 1px solid #000;
+	font-family: Arial;
+	color: #fff;
+	background-color: #3f3f8d;
+	outline:none;
+}
+
+input:hover, select:hover, textarea:hover, button:hover {
+    border: 1px solid #000;
+	font-family: Arial;
+	color: #fff;
+	background-color: #6161b8;
+	outline:none;
+}
+
+button:active, input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
+    border: 1px solid #000;
+	font-family: Arial;
+	color: #fff;
+	background-color: #dcdcef;
+	outline:none;
+}
+
+ul, ol {
+	color: #75c1ff;
+}

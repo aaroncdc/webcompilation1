@@ -1,0 +1,25 @@
+<style type="text/css">
+<!--
+body {
+	background-image: url(img/theme2/background.jpg);
+}
+body,td,th {
+	color: #FF0000;
+}
+.Estilo1 {font-family: "Courier New", Courier, monospace}
+.Estilo4 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #0000FF;
+	font-weight: bold;
+}
+.Estilo5 {color: #00FF00}
+.Estilo12 {font-weight: bold; color: #FFFF00;}
+.Estilo13 {
+	font-weight: bold;
+	color: #FFFF00;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 12px;
+}
+.Estilo15 {font-size: 24px}
+-->
+</style>

@@ -1,0 +1,16 @@
+{
+  "name": "test-webserver",
+  "version": "1.0.0",
+  "description": "Testing webserver",
+  "main": "node index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "crypto": "^1.0.1"
+  }
+}
